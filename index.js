@@ -9,9 +9,9 @@ import {
   flowgraph,
   G6Visitor,
   UIDVisitor
-} from "flow-react-kyrcoh";
+} from "flow-diagram-kyrcoh";
 
-import * as flow from "flow-react-kyrcoh";
+import * as flow from "flow-diagram-kyrcoh";
 
 let selectClause = () => sequence(a, b, repeat(optional("c")), zeroOrMore("d"));
 let fromClause = () => choice("1", "2", selectClause, "4");
