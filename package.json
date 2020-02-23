@@ -8,9 +8,8 @@
     "build": "parcel build *.html"
   },
   "dependencies": {
-    "@antv/g6": "3.3.5",
-    "split.js": "1.5.11"
-   // "flow-diagram-kyrcoh":"https://github.com/imaguiraga/flow-diagram-kyrcoh.git"
+    "@antv/g6": "^3.3.5",
+    "split.js": "^1.5.11"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",

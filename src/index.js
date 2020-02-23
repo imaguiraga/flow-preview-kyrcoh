@@ -18,7 +18,8 @@ instance = Split(["#one", "#two"], {
   snapOffset: 0
 });
 //*/
-
+/*
+  // "flow-diagram-kyrcoh":"https://github.com/imaguiraga/flow-diagram-kyrcoh.git"*/
 Split(["#one", "#two"], {
   sizes: [75, 25],
   //direction: "vertical",
