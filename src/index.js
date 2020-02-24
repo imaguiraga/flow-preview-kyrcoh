@@ -32,4 +32,6 @@ const codeMirrorEditor = CodeMirror(document.getElementById('editor-pane'), {
   mode:  "javascript",
   lineNumbers: true,
   viewportMargin: 40,
+  foldGutter: true,
+  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
 });
