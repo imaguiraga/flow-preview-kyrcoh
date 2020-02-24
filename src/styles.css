@@ -5,7 +5,7 @@ body {
 
 .CodeMirror {
   border: 1px solid #eee;
-  height: 92vh !important;
+  height: 99% !important;
 }
 
 #grid {
@@ -35,7 +35,7 @@ body {
 
 .content-pane {
   margin:0;
-  height: 92vh;
+  height: 94vh;
 }
 
 .gutter {
