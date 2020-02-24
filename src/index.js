@@ -1,16 +1,18 @@
 import "./styles.css";
 // using ES6 modules
 import Split from "split.js";
-let instance = null;
+import {content} from "./data-index.js";
+import CodeMirror from "codemirror";
+import "codemirror/lib/codemirror.css";
+import "codemirror/mode/javascript/javascript.js";
 
-Split(["#one", "#two"], {
+// Initialize Split Pane
+const splitPane = Split(["#one", "#two"], {
   sizes: [40, 60],
-  //direction: "vertical",
   minSize: [300, 400],
   gutter: function(index, direction) {
     var gutter = document.createElement("div");
     gutter.className = "gutter gutter-" + direction;
-    //gutter.style.height = "185px";
     return gutter;
   },
   gutterSize: 2,
@@ -21,4 +23,12 @@ Split(["#one", "#two"], {
         'flex-basis':  `${gutterSize}px`,
     })
 });
-console.log(instance);
+console.log(splitPane);
+console.log(content);
+//"function myScript(){return 100;}\n",
+// Initialize Editor Pane
+const codeMirrorEditor = CodeMirror(document.getElementById('editor-pane'), {
+  value: content,
+  mode:  "javascript",
+  lineNumbers: true,
+});
