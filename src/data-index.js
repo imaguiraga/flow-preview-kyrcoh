@@ -1,3 +1,4 @@
+export const content = `
 import {
   repeat,
   sequence,
@@ -24,7 +25,7 @@ let testflow = choice(
 );
 //*/
 // Generate flow by parsing javascript text
-let f = new Function("module",`const {
+let f = new Function("module",``const {
     repeat,
     sequence,
     optional,
@@ -35,7 +36,7 @@ let f = new Function("module",`const {
   let f = () => {
     return choice("a", "b", repeat(optional("c")));
   };
-  return f;`);
+  return f;``);
 
 //testflow = f(flow)();
 
@@ -76,3 +77,4 @@ let graph = flowgraph("container");
 graph.data(data);
 console.log(graph);
 graph.render();
+`;
