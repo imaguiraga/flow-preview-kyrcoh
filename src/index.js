@@ -4,7 +4,7 @@ import Split from "split.js";
 let instance = null;
 
 Split(["#one", "#two"], {
-  sizes: [75, 25],
+  sizes: [40, 60],
   //direction: "vertical",
   minSize: [300, 400],
   gutter: function(index, direction) {

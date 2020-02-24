@@ -1,6 +1,6 @@
 body {
-  font-family: sans-serif;
-  background-color: #eeeeee ;
+  font-family: monospace sans-serif;
+  background-color: #efefef ;
 }
 
 #grid {
@@ -17,12 +17,13 @@ body {
   height: 100vh;
 }
 .pane > h6 {
+  margin:0;
   padding:4px
 }
 
 .gutter {
   float: left;
-  background-color: #eeeeee;
+  background-color: #efefef;
   background-repeat: no-repeat;
 }
 
