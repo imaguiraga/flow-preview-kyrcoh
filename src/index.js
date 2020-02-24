@@ -9,7 +9,7 @@ import "codemirror/mode/javascript/javascript.js";
 // Initialize Split Pane
 const splitPane = Split(["#one", "#two"], {
   sizes: [40, 60],
-  minSize: [300, 400],
+  minSize: [200, 300],
   gutter: function(index, direction) {
     var gutter = document.createElement("div");
     gutter.className = "gutter gutter-" + direction;
@@ -23,12 +23,13 @@ const splitPane = Split(["#one", "#two"], {
         'flex-basis':  `${gutterSize}px`,
     })
 });
-console.log(splitPane);
-console.log(content);
-//"function myScript(){return 100;}\n",
+//console.log(splitPane);
+//console.log(content);
+
 // Initialize Editor Pane
 const codeMirrorEditor = CodeMirror(document.getElementById('editor-pane'), {
   value: content,
   mode:  "javascript",
   lineNumbers: true,
+  viewportMargin: 40,
 });

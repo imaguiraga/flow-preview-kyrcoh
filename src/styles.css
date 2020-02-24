@@ -5,7 +5,7 @@ body {
 
 .CodeMirror {
   border: 1px solid #eee;
-  height: 92vh;
+  height: 92vh !important;
 }
 
 #grid {
@@ -19,8 +19,9 @@ body {
 .pane {
   border: 1px solid lightgray;
   width: 94vw;
-  height: 96vh;
+  height: 100%;
 }
+
 .pane > h6 {
   margin:0;
   padding:4px;
@@ -31,9 +32,10 @@ body {
   height: 1px;
   border-top: 1px solid lightgray;
 }
+
 .content-pane {
   margin:0;
-  /*border-top: 1px solid lightgray;*/
+  height: 92vh;
 }
 
 .gutter {
