@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
-    "build": "parcel build *.html"
+    "build": "parcel build index.html"
   },
   "dependencies": {
     "@antv/g6": "^3.3.5",
