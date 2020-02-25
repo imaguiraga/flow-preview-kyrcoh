@@ -22,6 +22,8 @@ const splitPane = Split(["#one", "#two"], {
     })
 });
 //console.log(splitPane);
-const editor = createEditor('editor-pane',content); 
+const editor = createEditor('editor-pane',content,() => {
+  console.log('changes');
+}); 
 
 //console.log(editor.getContent());

@@ -1,5 +1,5 @@
-export const content = `
-import {
+export const content = 
+`import {
   repeat,
   sequence,
   optional,

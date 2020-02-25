@@ -2,12 +2,12 @@ import CodeMirror from "codemirror";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript.js";
 
-export function createEditor(editor,content){
-  return new EditorWrapper(editor, content);
+export function createEditor(editor, content, callback){
+  return new EditorWrapper(editor, content, callback);
 }
 
 class EditorWrapper {
-  constructor(editor, content){
+  constructor(editor, content, callback){
     // Initialize Editor Pane
     this._cm = CodeMirror(
       document.getElementById(editor), {
@@ -19,8 +19,10 @@ class EditorWrapper {
         foldGutter: true,
         gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
     });
-    //debugger
-    this._cm.on("change",this.onContentChange);
+    /* (instance/* @CodeMirror , changes  @array<object> {from, to, text, removed, origin} */
+    if(callback){
+      this._cm.on("changes",callback);
+    }
   }
 
   getContent(){
@@ -31,9 +33,5 @@ class EditorWrapper {
     this._cm.getDoc().setValue(content);
   }
 
-  onContentChange(instance/* @CodeMirror */, changes /* @array<object> {from, to, text, removed, origin}*/){
-    console.log("on-change");
-
-  }
 }
 
