@@ -9,7 +9,7 @@ export function createEditor(editor,content){
 class EditorWrapper {
   constructor(editor, content){
     // Initialize Editor Pane
-    this.codeMirrorEditor = CodeMirror(
+    this._cm = CodeMirror(
       document.getElementById(editor), {
         value: content,
         mode:  "javascript",
@@ -19,14 +19,20 @@ class EditorWrapper {
         foldGutter: true,
         gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
     });
-
+    //debugger
+    this._cm.on("change",this.onContentChange);
   }
 
   getContent(){
-
+    return this._cm.getDoc().getValue();
   }
 
   setContent(content){
+    this._cm.getDoc().setValue(content);
+  }
+
+  onContentChange(instance/* @CodeMirror */, changes /* @array<object> {from, to, text, removed, origin}*/){
+    console.log("on-change");
 
   }
 }
