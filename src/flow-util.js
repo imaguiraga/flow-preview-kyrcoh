@@ -35,8 +35,10 @@ export function parseFlow(input){
     return result;
   `;
   console.log(text);
-  /*
+  
   let flowfunc = new Function("module",text);
+  //console.log(flowfunc);
+  /*
   let result = null;
     try {
     result = flowfunc(flowModule);
