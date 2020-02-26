@@ -1,6 +1,8 @@
-var esprima = require('esprima');
-var escodegen = require("escodegen");
-
+//var esprima = require('esprima');
+//var escodegen = require("escodegen");
+import * as esprima from 'esprima';
+import * as escodegen from 'escodegen';
+//import * as flowModule from './flow-module.js'
 export function parseFlow(input){
   // Parse text
   var tree = esprima.parseScript(input);
@@ -33,6 +35,14 @@ export function parseFlow(input){
     return result;
   `;
   console.log(text);
-  //let f = new Function("module",text);
-  //return f();
+  /*
+  let flowfunc = new Function("module",text);
+  let result = null;
+    try {
+    result = flowfunc(flowModule);
+  }catch(e){
+    console.error(e.name + ': ' + e.message);
+  }
+  return f();
+  //*/
 }
