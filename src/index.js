@@ -1,7 +1,8 @@
 import "./styles.css";
 // using ES6 modules
 import Split from "split.js";
-import {content} from "./data-index.js";
+import {content} from "./bak.js";
+import {parseFlow} from "./flow-util.js";
 import {createEditor} from "./editor-pane.js";
 
 // Initialize Split Pane

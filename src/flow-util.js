@@ -1,4 +1,3 @@
-import {esprima} from 'esprima';
 var esprima = require('esprima');
 var escodegen = require("escodegen");
 
