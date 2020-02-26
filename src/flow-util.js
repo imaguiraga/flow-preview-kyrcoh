@@ -43,6 +43,6 @@ export function parseFlow(input){
   }catch(e){
     console.error(e.name + ': ' + e.message);
   }
-  return f();
+  return result;
   //*/
 }
