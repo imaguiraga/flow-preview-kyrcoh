@@ -4,15 +4,19 @@ var escodegen = require("escodegen");
 export function parseFlow(input){
   // Parse text
   var tree = esprima.parseScript(input);
-  var rtree = esprima.parseScript(r);
   // Modify AST
-  tree.body.push(rtree);
+  //tree.body.push(rtree);
   let ids = tree.body.filter(
     (elt) => {return elt.type === 'VariableDeclaration'})
       .map((elt) => {
-          let id = elt.declarations[0].id.name;
-          return `result.set('${id}',${id});`;
-      });
+        let decl = elt.declarations[0];
+        let name = decl.id.name;
+        let value = name;
+        if(decl.init.type === "ArrowFunctionExpression" || decl.init.type === "FunctionExpression"){
+            value = name+"()";
+        }
+        return `result.set('${name}',${value});`;
+    });
       
   let text =
     `const {

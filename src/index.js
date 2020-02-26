@@ -23,8 +23,9 @@ const splitPane = Split(["#one", "#two"], {
     })
 });
 //console.log(splitPane);
-const editor = createEditor('editor-pane',content,() => {
+const editor = createEditor('editor-pane',content,(instance) => {
   console.log('changes');
+  parseFlow(instance.getDoc().getValue());
 }); 
 
 //console.log(editor.getContent());
