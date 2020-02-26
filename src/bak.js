@@ -1,6 +1,8 @@
 export const content = 
 `let selectClause = () => sequence(a, b, repeat(optional("c")), zeroOrMore("d"));
-let fromClause = () => choice("1", "2", selectClause, "4");
+let fromClause = function a() {
+    return  choice("1", "2", selectClause, "4");
+};
 
 let testflow = choice(
   terminal("a"),
