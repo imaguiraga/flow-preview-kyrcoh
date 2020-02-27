@@ -1,10 +1,9 @@
 import "./styles.css";
 // using ES6 modules
 import Split from "split.js";
-import {content} from "./data-index.js";
-import CodeMirror from "codemirror";
-import "codemirror/lib/codemirror.css";
-import "codemirror/mode/javascript/javascript.js";
+import {content} from "./bak.js";
+import {parseFlow} from "./flow-util.js";
+import {createEditor} from "./editor-pane.js";
 
 // Initialize Split Pane
 const splitPane = Split(["#one", "#two"], {
@@ -24,16 +23,9 @@ const splitPane = Split(["#one", "#two"], {
     })
 });
 //console.log(splitPane);
-//console.log(content);
-
-// Initialize Editor Pane
-const codeMirrorEditor = CodeMirror(
-  document.getElementById('editor-pane'), {
-    value: content,
-    mode:  "javascript",
-    lineNumbers: true,
-    lineWrapping: true,
-    viewportMargin: 40,
-    foldGutter: true,
-    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-});
+const editor = createEditor('editor-pane','',(instance) => {
+  console.log('changes');
+  parseFlow(instance.getDoc().getValue());
+}); 
+editor.setContent(content);
+//console.log(editor.getContent());
