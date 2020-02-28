@@ -1,17 +1,17 @@
 {
-  "name": "qgnirxbow.github",
-  "version": "0.0.0",
+  "name": "flow-preview-kyrcoh",
+  "version": "1.0.0",
+  "description": "preview flow diagram project",
   "private": true,
+  "main": "index.html",
   "dependencies": {
-    "react": "16.12.0",
-    "esprima": "4.0.1",
     "@antv/g6": "3.3.6",
-    "split.js": "1.5.11",
+    "codemirror": "^5.52.0",
     "escodegen": "1.14.1",
+    "esprima": "4.0.1",
+    "react": "16.12.0",
     "react-dom": "16.12.0",
-    "codemirror": "5.52.0",
-    "@types/react": "16.9.19",
-    "@types/react-dom": "16.9.5"
+    "split.js": "1.5.11" 
   },
   "scripts": {
     "start": "react-scripts start",
@@ -20,6 +20,71 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "react-scripts": "latest"
+    "@types/react": "16.9.19",
+    "@types/react-dom": "16.9.5",
+    "react-scripts": "3.4.0",
+    "typescript": "^3.8.2"
+  },
+  
+  "keywords": [
+    "javascript",
+    "starter"
+  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+{
+  "name": "flow-preview-kyrcoh",
+  "version": "1.0.0",
+  "description": "preview flow diagram project",
+  "private": true,
+  "main": "index.html",
+  "dependencies": {
+    "@antv/g6": "3.3.6",
+    "codemirror": "^5.52.0",
+    "escodegen": "1.14.1",
+    "esprima": "4.0.1",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "split.js": "1.5.11" 
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@types/react": "16.9.19",
+    "@types/react-dom": "16.9.5",
+    "react-scripts": "3.4.0",
+    "typescript": "^3.8.2"
+  },
+  
+  "keywords": [
+    "javascript",
+    "starter"
+  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
