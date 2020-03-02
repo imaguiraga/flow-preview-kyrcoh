@@ -92,6 +92,9 @@ const editor = createEditor('editor-pane','',(instance) => {
         graph.data(data);
         graph.render();
       }
+    } else {
+      graph.data([]);
+      graph.render();
     }
 
     console.log(flowMap);
