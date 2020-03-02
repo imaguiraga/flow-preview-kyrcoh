@@ -28,7 +28,7 @@ const editor = createEditor('editor-pane','',(instance) => {
   console.log('changes');
   let flowfunc = parseFlow(instance.getDoc().getValue());
   let flowMap = flowfunc(flow);
-  consle.log(flowMap.keys());
+  console.log(flowMap.keys());
 }); 
 editor.setContent(content);
 //console.log(editor.getContent());

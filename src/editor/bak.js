@@ -1,5 +1,5 @@
 export const content = 
-`let selectClause = () => sequence(a, b, repeat(optional("c")), zeroOrMore("d"));
+`let selectClause = () => sequence("a", "b", repeat(optional("c")), zeroOrMore("d"));
 let fromClause = function a() {
     return  choice("1", "2", selectClause, "4");
 };
