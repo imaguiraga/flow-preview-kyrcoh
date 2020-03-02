@@ -84,6 +84,6 @@ const uidvisitor = new UIDVisitor();
 testflow = uidvisitor.visit(testflow);
 const data = visitor.visit(testflow);
 
-let graph = diagram.createFlowGraph("editor-pane");
+let graph = diagram.createFlowGraph("preview-pane");
 graph.data(data);
 graph.render();
