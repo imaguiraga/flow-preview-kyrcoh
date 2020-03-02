@@ -23,17 +23,7 @@ const splitPane = Split(["#one", "#two"], {
         'flex-basis':  `${gutterSize}px`,
     })
 });
-//console.log(splitPane);
-const editor = createEditor('editor-pane','',(instance) => {
-  console.log('changes');
-  let flowfunc = parseFlow(instance.getDoc().getValue());
-  let flowMap = flowfunc(flow);
-  console.log(flowMap.keys());
-}); 
-editor.setContent(content);
-//console.log(editor.getContent());
 
-////////////////////
 
 const {
   repeat,
@@ -49,7 +39,7 @@ const {
   G6Visitor,
   UIDVisitor
 } = diagram;
-
+/*
 let selectClause = () => sequence(a, b, repeat(optional("c")), zeroOrMore("d"));
 let fromClause = () => choice("1", "2", selectClause, "4");
 
@@ -59,7 +49,7 @@ let testflow = choice(
   sequence(terminal("b"), terminal("c"),sequence("c","d")),
   sequence("c","d")
 );
-//*/
+
 // Generate flow by parsing javascript text
 let func = new Function("module",`const {
     repeat,
@@ -81,12 +71,30 @@ try {
 }catch(e){
   console.error(e.name + ': ' + e.message);
 }
-
+//*/
 const visitor = new G6Visitor();
 const uidvisitor = new UIDVisitor();
-testflow = uidvisitor.visit(testflow);
-const data = visitor.visit(testflow);
 
-let graph = diagram.createFlowGraph("preview-pane");
-graph.data(data);
-graph.render();
+const graph = diagram.createFlowGraph("preview-pane");
+
+//console.log(splitPane);
+const editor = createEditor('editor-pane','',(instance) => {
+  console.log('changes');
+  // Update preview
+  let flowfunc = parseFlow(instance.getDoc().getValue());
+  try {
+    let flowMap = flowfunc(flow);
+    let testflow = flowMap.get("testflow");
+    testflow = uidvisitor.visit(testflow);
+    const data = visitor.visit(testflow);
+    graph.data(data);
+    graph.render();
+
+    console.log(flowMap);
+  }catch(e){
+    console.error(e.name + ': ' + e.message);
+  }
+  
+}); 
+editor.setContent(content);
+
