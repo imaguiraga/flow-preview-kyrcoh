@@ -2,6 +2,7 @@ import CodeMirror from "codemirror";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript.js";
 import "codemirror/addon/display/panel.js";
+import "codemirror/addon/lint/json-lint.js";
 
 export function createEditor(editor, content, callback){
   return new EditorWrapper(editor, content, callback);
@@ -44,7 +45,7 @@ class EditorWrapper {
         lineWrapping: true,
         viewportMargin: 40,
         foldGutter: true,
-        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter","CodeMirror-lint-markers"],
     });
     /* (instance/* @CodeMirror , changes  @array<object> {from, to, text, removed, origin} */
     if(callback){
