@@ -47,4 +47,5 @@ export function parseFlow(input){
   }
   return result;
   //*/
+  return flowfunc;
 }
