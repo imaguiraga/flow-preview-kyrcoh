@@ -180,5 +180,11 @@ export function createFlowGraph(containerId){
   };
   graph.node(getNodeConfig);
 
+  // plugin
+  const grid = new G6.Grid();
+  // Instantiate the Minimap plugin
+  const minimap = new G6.Minimap();
+  graph.addPlugin(grid);
+  graph.addPlugin(minimap);
   return graph;
 }
