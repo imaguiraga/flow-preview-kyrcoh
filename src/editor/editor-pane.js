@@ -3,6 +3,7 @@ import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript.js";
 import "codemirror/addon/display/panel.js";
 import "codemirror/addon/lint/json-lint.js";
+import "jshint";
 
 export function createEditor(editor, content, callback){
   return new EditorWrapper(editor, content, callback);
