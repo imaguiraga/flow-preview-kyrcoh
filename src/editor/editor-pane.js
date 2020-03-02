@@ -1,4 +1,4 @@
-import "jshint/dist/jshint.js";
+require "jshint/dist/jshint.js";
 import CodeMirror from "codemirror";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript.js";
