@@ -84,11 +84,15 @@ const editor = createEditor('editor-pane','',(instance) => {
   let flowfunc = parseFlow(instance.getDoc().getValue());
   try {
     let flowMap = flowfunc(flow);
-    let testflow = flowMap.get("testflow");
-    testflow = uidvisitor.visit(testflow);
-    const data = visitor.visit(testflow);
-    graph.data(data);
-    graph.render();
+    if(flowMap.size > 0){
+      if(flowMap.has("testflow")){
+        let testflow = flowMap.get("testflow");
+        testflow = uidvisitor.visit(testflow);
+        const data = visitor.visit(testflow);
+        graph.data(data);
+        graph.render();
+      }
+    }
 
     console.log(flowMap);
   }catch(e){
