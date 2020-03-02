@@ -12,8 +12,6 @@ import "codemirror/addon/lint/lint.js";
 import "codemirror/addon/lint/javascript-lint.js";
 import "codemirror/addon/lint/lint.css";
 
-
-
 export function createEditor(editor, content, callback){
   return new EditorWrapper(editor, content, callback);
 }
