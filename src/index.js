@@ -3,6 +3,8 @@ import "./styles.css";
 import Split from "split.js";
 import {content,parseFlow,createEditor} from "./editor";
 
+import * as flow from "./preview/flow-element";
+import * as diagram from "./preview/flow-diagram";
 
 // Initialize Split Pane
 const splitPane = Split(["#one", "#two"], {
@@ -25,13 +27,14 @@ const splitPane = Split(["#one", "#two"], {
 const editor = createEditor('editor-pane','',(instance) => {
   console.log('changes');
   let flowfunc = parseFlow(instance.getDoc().getValue());
+  let flowMap = flowfunc(flow);
+  consle.log(flowMap.keys());
 }); 
 editor.setContent(content);
 //console.log(editor.getContent());
 
 ////////////////////
-import * as flow from "./preview/flow-element";
-import * as diagram from "./preview/flow-diagram";
+
 const {
   repeat,
   sequence,
