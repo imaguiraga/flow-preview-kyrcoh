@@ -45,6 +45,7 @@ class EditorWrapper {
         lineWrapping: true,
         viewportMargin: 40,
         foldGutter: true,
+        lint: true,
         gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter","CodeMirror-lint-markers"],
     });
     /* (instance/* @CodeMirror , changes  @array<object> {from, to, text, removed, origin} */
