@@ -244,7 +244,6 @@ export class OptionalEltG6Visitor{
     });
 
     // nodes
-    debugger;
     if (tree.kind === "optional") {
       tree.elts.forEach(node => {
         // keep only terminal nodes
