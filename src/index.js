@@ -1,7 +1,7 @@
 import "./styles.css";
 // using ES6 modules
 import Split from "split.js";
-import {content,parseFlow,createEditor} from "./editor";
+import {content,parseFlow,createEditor} from "./editor/index.js";
 
 // Initialize Split Pane
 const splitPane = Split(["#one", "#two"], {
