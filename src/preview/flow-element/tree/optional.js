@@ -18,7 +18,7 @@ export class OptionalElt extends NonTerminalElt{
   add(elt){
     // only one elt can be added
     if(this.elts.length > 0){
-      this.elts.clear();
+      this.elts.splice(0,this.elts.length);
     }
     this.elts.push(this.resolveElt(elt));
     return this;

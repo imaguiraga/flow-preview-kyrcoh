@@ -49,11 +49,12 @@ export class TerminalElt {
   }
 
   add(elt){  
+    debugger
     let r = this.resolveElt(elt); 
     if( r !== null) {
       // only one elt can be added
       if(this.elts.length > 0){
-        this.elts.clear();
+        this.elts.splice(0,this.elts.length);
       }
       this.elts.push(r);
     }
@@ -69,18 +70,18 @@ export class TerminalElt {
     return visitor.visit(this,filter);
   }
 
-
-  ctx(_ctx){
-    this.ctx = _ctx;
+  _ctx_(_ctx){
+    this.ctx = ctx;
     return this;
   }
 
-  title(_title){
+  _title_(_title){
     this.title = _title;
     return this;
   }
 
-  id(_id){
+  _id_(_id){
+    debugger
     this.id = _id;
     return this;
   }
