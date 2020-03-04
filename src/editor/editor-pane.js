@@ -1,7 +1,16 @@
+
 import CodeMirror from "codemirror";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript.js";
 import "codemirror/addon/display/panel.js";
+//import "jshint/src/jshint.js";
+//import * as jshint from "jshint";
+import { JSHINT } from "jshint";
+window.JSHINT = JSHINT;
+
+import "codemirror/addon/lint/lint.js";
+import "codemirror/addon/lint/javascript-lint.js";
+import "codemirror/addon/lint/lint.css";
 
 export function createEditor(editor, content, callback){
   return new EditorWrapper(editor, content, callback);
@@ -44,7 +53,9 @@ class EditorWrapper {
         lineWrapping: true,
         viewportMargin: 40,
         foldGutter: true,
-        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+        lint: true,
+        lint: { 'esversion': '8' }, 
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter","CodeMirror-lint-markers"],
     });
     /* (instance/* @CodeMirror , changes  @array<object> {from, to, text, removed, origin} */
     if(callback){

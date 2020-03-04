@@ -16,6 +16,22 @@ body {
   background-color: white;
 }
 
+#preview-pane {
+  position: relative;
+}
+
+#preview-pane > canvas {
+  width: 100%;
+  height: 100%;
+
+}
+
+.g6-minimap {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+
+}
 .pane {
   border: 1px solid lightgray;
   width: 94vw;
@@ -36,7 +52,9 @@ body {
 .content-pane {
   margin:0;
   height: 94vh;
+
 }
+
 
 .gutter {
   float: left;
