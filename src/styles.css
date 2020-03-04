@@ -3,6 +3,12 @@ body {
   background-color: #efefef ;
 }
 
+.flow-select {
+  width:100%;
+  padding:2px;
+  font-family: "Consolas"
+}
+
 .CodeMirror {
   border: 1px solid #eee;
   height: 99% !important;

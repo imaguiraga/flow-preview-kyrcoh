@@ -52,10 +52,11 @@ const editor = createEditor('editor-pane','',(instance) => {
   try {
     // Update preview
     let flowfunc = parseFlow(instance.getDoc().getValue());
-    let flowMap = flowfunc(flow);
-    if(flowMap.size > 0){
-      if(flowMap.has("testflow")){
-        let testflow = flowMap.get("testflow");
+    let flows = flowfunc(flow);
+    initFlow(flows);
+    if(flows.size > 0){
+      if(flows.has("testflow")){
+        let testflow = flows.get("testflow");
         testflow = uidvisitor.visit(testflow);
         const data = visitor.visit(testflow);
         graph.data(data!== null ? data : []);
@@ -66,7 +67,7 @@ const editor = createEditor('editor-pane','',(instance) => {
       graph.render();
     }
 
-    console.log(flowMap);
+    console.log(flows);
   }catch(e){
     console.error(e.name + ': ' + e.message);
     graph.data([]);
@@ -78,17 +79,32 @@ const editor = createEditor('editor-pane','',(instance) => {
 import {samples} from "./samples.js";
 
 (function initSamples(samples){
-// Populate select component from list of samples
-let selectElt = document.getElementById("flow-sample-select");
-samples.forEach((s,index) => {
-  let opt = document.createElement("option");
-  opt.value = index;
-  opt.text = `Sample #${index +1}`;
-  selectElt.add(opt);
-});
-
-
+  // Populate select component from list of samples
+  let selectElt = document.getElementById("flow-sample-select");
+  while (selectElt.firstChild) {
+    selectElt.firstChild.remove();
+  }
+  samples.forEach((value,index) => {
+    let opt = document.createElement("option");
+    opt.value = index;
+    opt.text = `Sample #${index +1}`;
+    selectElt.add(opt);
+  });
 })(samples);
+
+function initFlow(flows){
+  // Populate select component from list of samples
+  let selectElt = document.getElementById("flow-preview-select");
+  while (selectElt.firstChild) {
+    selectElt.firstChild.remove();
+  }
+  flows.forEach((value,key) => {
+    let opt = document.createElement("option");
+    opt.value = key;
+    opt.text = key;
+    selectElt.add(opt);
+  });
+}
 
 editor.setContent(content);
 
