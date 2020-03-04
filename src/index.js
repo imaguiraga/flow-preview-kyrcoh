@@ -74,5 +74,21 @@ const editor = createEditor('editor-pane','',(instance) => {
   }
   
 }); 
+
+import {samples} from "./samples.js";
+
+(function initSamples(samples){
+// Populate select component from list of samples
+let selectElt = document.getElementById("flow-sample-select");
+samples.forEach((s,index) => {
+  let opt = document.createElement("option");
+  opt.value = index;
+  opt.text = `Sample #${index +1}`;
+  selectElt.add(opt);
+});
+
+
+})(samples);
+
 editor.setContent(content);
 
