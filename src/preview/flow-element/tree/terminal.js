@@ -71,7 +71,7 @@ export class TerminalElt {
   }
 
   _ctx_(_ctx){
-    this.ctx = ctx;
+    this.ctx = _ctx;
     return this;
   }
 
