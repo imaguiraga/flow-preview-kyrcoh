@@ -6,7 +6,7 @@ A flow DSL javascript Visualizer using [antvis G6 Graph](https://g6.antv.vision/
 and [CodeMirror](https://codemirror.net/) as text editor.
 
 ## Flow elements ##
-- sequence(...)
+- sequence(array)
 ```javascript
   sequence("a", "b", 
     repeat(optional("c")), 
@@ -14,7 +14,7 @@ and [CodeMirror](https://codemirror.net/) as text editor.
   )
 ```  
 
-- choice(...)
+- choice(array)
 ```javascript
   choice(
     terminal("a"),
@@ -22,22 +22,22 @@ and [CodeMirror](https://codemirror.net/) as text editor.
   )
 ```  
 
-- optional(<flowElement>)
+- optional(flowElement)
 ```javascript
   optional("c")
 ```  
 
-- repeat(<flowElement>)
+- repeat(flowElement)
 ```javascript
   repeat(optional("c"))
 ```  
 
-- terminal(<string>)
+- terminal(string)
   ```javascript
   terminal("b")
   ```
 
-- zeroOrMore(<flowElement>))
+- zeroOrMore(flowElement)
   ```javascript
   zeroOrMore("d")
   ```
