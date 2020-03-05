@@ -6,6 +6,8 @@ import {parseFlow,createEditor} from "./editor";
 import * as flow from "./preview/flow-element";
 import * as diagram from "./preview/flow-diagram";
 
+const DEBUG = true;
+
 // Initialize Split Pane
 const splitPane = Split(["#one", "#two"], {
   sizes: [40, 60],
@@ -49,7 +51,7 @@ function updatePreviewPane(content){
     // Update preview
     let flowfunc = parseFlow(content);
     let flows = flowfunc(flow);
-    console.log(flows);
+    if(DEBUG) console.log(flows);
     initFlowSelection(flows);
     renderFlow(flows.get(flows.keys().next().value));    
   } catch(e) {
@@ -74,11 +76,10 @@ function renderFlow(input){
   }
 }
 
-//console.log(splitPane);
 const editor = createEditor('editor-pane','');
 
 editor.on("changes",(instance) => {
-  console.log('changes');
+  if(DEBUG) console.log('changes');
   const content = instance.getDoc().getValue();
   updatePreviewPane(content);
 });
