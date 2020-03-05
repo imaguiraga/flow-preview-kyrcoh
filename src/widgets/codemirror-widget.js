@@ -102,7 +102,7 @@ export default class CodeMirrorWidget extends Widget {
     if (msg.width < 0 || msg.height < 0) {
       this._editor.refresh();
     } else {
-      this._editor.setSize(msg.width, msg.height);
+      this._editor.setSize(msg.width, msg.height-this.selectElt.height);
     }
   }
 
