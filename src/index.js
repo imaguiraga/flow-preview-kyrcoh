@@ -52,7 +52,7 @@ function updatePreviewPane(content){
     let flows = flowfunc(flow);
     console.log(flows);
     initFlowSelection(flows);
-    renderFlow(flows.get("testflow") /*flows.next().value*/);    
+    renderFlow(flows.get(flows.keys().next().value));    
   } catch(e) {
     console.error(e.name + ': ' + e.message);
     graph.data([]);
