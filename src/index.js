@@ -68,7 +68,7 @@ const editor = createEditor('editor-pane','',(instance) => {
     }
 
     console.log(flows);
-  }catch(e){
+  } catch(e) {
     console.error(e.name + ': ' + e.message);
     graph.data([]);
     graph.render();
@@ -76,35 +76,46 @@ const editor = createEditor('editor-pane','',(instance) => {
   
 }); 
 
-import {samples} from "./samples.js";
-
-(function initSamples(samples){
-  // Populate select component from list of samples
-  let selectElt = document.getElementById("flow-sample-select");
-  while (selectElt.firstChild) {
-    selectElt.firstChild.remove();
-  }
-  samples.forEach((value,index) => {
-    let opt = document.createElement("option");
-    opt.value = index;
-    opt.text = `Sample #${index +1}`;
-    selectElt.add(opt);
-  });
-})(samples);
-
 function initFlow(flows){
   // Populate select component from list of samples
   let selectElt = document.getElementById("flow-preview-select");
   while (selectElt.firstChild) {
     selectElt.firstChild.remove();
   }
+
   flows.forEach((value,key) => {
     let opt = document.createElement("option");
     opt.value = key;
     opt.text = key;
     selectElt.add(opt);
   });
+  // Update flow when the selection changes 
+  selectElt.addEventListener('change', (event) => {
+    const result = document.querySelector('.result');
+    result.textContent = `You like ${event.target.value}`;
+  });
 }
 
 editor.setContent(content);
+import {samples} from "./samples.js";
+
+(function initSamples(samples,callback){
+  // Populate select component from list of samples
+  let selectElt = document.getElementById("flow-sample-select");
+  while (selectElt.firstChild) {
+    selectElt.firstChild.remove();
+  }
+
+  samples.forEach((value,index) => {
+    let opt = document.createElement("option");
+    opt.value = index;
+    opt.text = `Sample #${index +1}`;
+    selectElt.add(opt);
+  });
+  // Update sample when the selection changes 
+  selectElt.addEventListener('change', (event) => {
+    const result = samples[event.target.value];
+    callback(result);
+  });
+})(samples,(text)=> {editor.setContent(text)});
 
