@@ -1,7 +1,7 @@
 import "./styles.css";
 // using ES6 modules
 import Split from "split.js";
-import {content,parseFlow,createEditor} from "./editor";
+import {parseFlow,createEditor} from "./editor";
 
 import * as flow from "./preview/flow-element";
 import * as diagram from "./preview/flow-diagram";
@@ -74,13 +74,14 @@ function renderFlow(input){
   }
 }
 
-
 //console.log(splitPane);
-const editor = createEditor('editor-pane','',(instance) => {
+const editor = createEditor('editor-pane','');
+
+editor.on("changes",(instance) => {
   console.log('changes');
   const content = instance.getDoc().getValue();
   updatePreviewPane(content);
-}); 
+});
 
 function initFlowSelection(flows){
   // Populate select component from list of samples
@@ -102,10 +103,9 @@ function initFlowSelection(flows){
   });
 }
 
-editor.setContent(content);
 import {samples} from "./samples.js";
 
-(function initSampleSelection(samples,callback){
+(function initSampleSelection(samples,editor){
   // Populate select component from list of samples
   let selectElt = document.getElementById("flow-sample-select");
   while (selectElt.firstChild) {
@@ -118,10 +118,13 @@ import {samples} from "./samples.js";
     opt.text = `Sample #${index +1}`;
     selectElt.add(opt);
   });
+
+  editor.getDoc().setValue(samples[0]);
   // Update sample when the selection changes 
   selectElt.addEventListener('change', (event) => {
     const result = samples[event.target.value];
-    callback(result);
+    editor.getDoc().setValue(result);
   });
-})(samples,(text)=> {editor.setContent(text)});
+
+})(samples,editor);
 

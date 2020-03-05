@@ -1,4 +1,5 @@
 import * as diagram from "../preview/flow-diagram";
+import G6 from "@antv/g6";
 import {
   CommandRegistry
 } from '@lumino/commands';
@@ -39,7 +40,7 @@ export default class G6GraphWidget extends Widget {
     if (msg.width < 0 || msg.height < 0) {
       this._graph.refresh();
     } else {
-      this._graph.setSize(msg.width, msg.height);
+      this._graph.changeSize(msg.width, msg.height);
     }
   }
 

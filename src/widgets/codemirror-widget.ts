@@ -18,7 +18,7 @@ import {
 } from '@lumino/commands';
 
 import {
-  Message, ResizeMessage
+  Message
 } from '@lumino/messaging';
 
 import {
@@ -53,7 +53,7 @@ export default class CodeMirrorWidget extends Widget {
     this._editor.refresh();
   }
 
-  protected onResize(msg: ResizeMessage): void {
+  protected onResize(msg: Widget.ResizeMessage): void {
     if (msg.width < 0 || msg.height < 0) {
       this._editor.refresh();
     } else {
