@@ -45,38 +45,45 @@ const uidvisitor = new UIDVisitor();
 
 const graph = diagram.createFlowGraph("preview-pane");
 
-//console.log(splitPane);
-const editor = createEditor('editor-pane','',(instance) => {
-  console.log('changes');
-  
+function updatePreviewPane(content){
   try {
     // Update preview
-    let flowfunc = parseFlow(instance.getDoc().getValue());
+    let flowfunc = parseFlow(content);
     let flows = flowfunc(flow);
-    initFlow(flows);
-    if(flows.size > 0){
-      if(flows.has("testflow")){
-        let testflow = flows.get("testflow");
-        testflow = uidvisitor.visit(testflow);
-        const data = visitor.visit(testflow);
-        graph.data(data!== null ? data : []);
-        graph.render();
-      }
-    } else {
-      graph.data([]);
-      graph.render();
-    }
-
     console.log(flows);
+    initFlowSelection(flows);
+    renderFlow(flows.get("testflow") /*flows.next().value*/);    
   } catch(e) {
     console.error(e.name + ': ' + e.message);
     graph.data([]);
     graph.render();
   }
-  
+}
+
+function renderFlow(input){
+  try {
+    // Update preview
+    let flow = uidvisitor.visit(input);
+    const data = visitor.visit(flow);
+    graph.data(data!== null ? data : []);
+    graph.render();
+
+  } catch(e) {
+    console.error(e.name + ': ' + e.message);
+    graph.data([]);
+    graph.render();
+  }
+}
+
+
+//console.log(splitPane);
+const editor = createEditor('editor-pane','',(instance) => {
+  console.log('changes');
+  const content = instance.getDoc().getValue();
+  updatePreviewPane(content);
 }); 
 
-function initFlow(flows){
+function initFlowSelection(flows){
   // Populate select component from list of samples
   let selectElt = document.getElementById("flow-preview-select");
   while (selectElt.firstChild) {
@@ -91,15 +98,15 @@ function initFlow(flows){
   });
   // Update flow when the selection changes 
   selectElt.addEventListener('change', (event) => {
-    const result = document.querySelector('.result');
-    result.textContent = `You like ${event.target.value}`;
+    const result = flows.get(event.target.value);
+    renderFlow(result);
   });
 }
 
 editor.setContent(content);
 import {samples} from "./samples.js";
 
-(function initSamples(samples,callback){
+(function initSampleSelection(samples,callback){
   // Populate select component from list of samples
   let selectElt = document.getElementById("flow-sample-select");
   while (selectElt.firstChild) {
