@@ -11,17 +11,16 @@ import "codemirror/addon/lint/lint.css";
 import { JSHINT } from "jshint";
 window.JSHINT = JSHINT;
 
-export function createEditor(editor, content, callback){
+export function createEditor(container, content, callback){
   // Initialize Editor Pane
     let editor = CodeMirror(
-      document.getElementById(editor), {
+      document.getElementById(container), {
         value: content,
         mode:  "javascript",
         lineNumbers: true,
         lineWrapping: true,
         viewportMargin: 40,
         foldGutter: true,
-        lint: true,
         lint: { 'esversion': '8' }, 
         gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter","CodeMirror-lint-markers"],
     });
