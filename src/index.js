@@ -24,7 +24,6 @@ const splitPane = Split(["#one", "#two"], {
     })
 });
 
-
 const {
   repeat,
   sequence,
