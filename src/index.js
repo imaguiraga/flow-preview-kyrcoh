@@ -1,6 +1,7 @@
 import "./styles.css";
 // using ES6 modules
 import Split from "split.js";
+import {samples} from "./samples.js";
 import {content,parseFlow,createEditor} from "./editor";
 
 import * as flow from "./preview/flow-element";
@@ -104,7 +105,6 @@ function initFlowSelection(flows){
 }
 
 editor.setContent(content);
-import {samples} from "./samples.js";
 
 (function initSampleSelection(samples,callback){
   // Populate select component from list of samples
