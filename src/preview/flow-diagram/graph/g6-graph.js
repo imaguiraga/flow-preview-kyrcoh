@@ -8,10 +8,10 @@ const flowEltNodeOptions =    {
             y: -25,
             width: 150,
             height: 50,
-            radius: 10,
+            radius: 8,
             stroke: cfg.style.stroke || "#5B8FF9",
             fill: cfg.style.fill || "#C6E5FF",
-            lineWidth: 3
+            lineWidth: 2
           },
           name: "rect-shape"
         });
@@ -39,9 +39,9 @@ export function createFlowGraph(containerId){
     layout: {
       type: "dagre",
       nodesepFunc: (d) => {
-        return 50;
+        return 40;
       },
-      ranksep: 70
+      ranksep: 60
     },
     defaultNode: {
       type: "flow-elt",
@@ -52,14 +52,14 @@ export function createFlowGraph(containerId){
       },
       labelCfg: {
         style: {
-          fontSize: 14,
+          fontSize: 12,
         }
       }
     },
     defaultEdge: {
       type: "polyline",
       style: {
-        radius: 20,
+        radius: 10,
         offset: 45,
         endArrow: true,
         lineWidth: 2,
@@ -69,7 +69,9 @@ export function createFlowGraph(containerId){
     modes: {
       default: ["drag-canvas", "zoom-canvas", "drag-node"]
     },
-    fitView: true
+    fitView: true,
+    minZoom: 0.002,
+    mazZoom: 20
   };
   const graph = new G6.Graph(graphOptions);
 
@@ -180,11 +182,9 @@ export function createFlowGraph(containerId){
   };
   graph.node(getNodeConfig);
 
-  // plugin
-  const grid = new G6.Grid();
   // Instantiate the Minimap plugin
   const minimap = new G6.Minimap();
-  graph.addPlugin(grid);
   graph.addPlugin(minimap);
+  graph.fitView(40);
   return graph;
 }
