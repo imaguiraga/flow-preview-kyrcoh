@@ -271,14 +271,19 @@ export class G6GraphWidget extends Widget {
     separator.setAttribute("class","separator");   
     this.node.appendChild(separator);
 
-    let content = document.createElement('div');
-    content.setAttribute("class","content-pane");
-    this.node.appendChild(content);
+    this.content = document.createElement('div');
+    this.content.setAttribute("class","content-pane");
+    this.content.setAttribute("style","width:90%;height:90%");
+    this.node.appendChild(this.content);
 
+  }
+
+  onAfterAttach(msg) {
+    //this.graph.changeSize(this.content.scrollWidth, this.content.scrollHeight);    
     this.graph = new G6.Graph({
-        container: content,
-        width: 500,//this.node.scrollWidth ,
-        height: 500,//this.node.scrollHeight,
+        container: this.content,
+        width: this.content.scrollWidth ,
+        height: this.content.scrollHeight,
         layout: {
             type: 'dagre',
             nodesepFunc: d => {
@@ -329,26 +334,19 @@ export class G6GraphWidget extends Widget {
         },
         fitView: true,
         minZoom: 0.002,
-        mazZoom: 20
+        maxZoom: 20
     });
     this.graph.data(data);
-  }
-
-  onAfterAttach(msg) {
-    this.graph.changeSize(this.node.scrollWidth, this.node.scrollHeight); 
-    
+    this.graph.fitView(20); 
     this.graph.render();
-    this.graph.zoom(this.node.scrollWidth/this.graph.cfg.width);
-    //this.graph.fitView(10);
-    this.graph.translate(this.node.scrollWidth/2, 0);
-    
+   
   }
 
   onResize(msg) {
-    if (msg.width < 0 || msg.height < 0) {
-      this.graph.refresh();
-    } else {
-      this.graph.changeSize(msg.width, msg.height);
+    if(msg.width > 0 && msg.height > 0 ){
+        this.graph.changeSize(this.content.scrollWidth, this.content.scrollHeight); 
+        this.graph.fitView(20); 
+        this.graph.render();
     }
   }
 }
