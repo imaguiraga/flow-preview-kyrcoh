@@ -129,4 +129,3 @@ editor.getDoc().setValue(content);
     updatePreviewPane(result);
   });
 })(samples,editor);
-

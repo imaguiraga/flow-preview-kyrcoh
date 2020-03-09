@@ -49,6 +49,7 @@ function makePanel(where) {
   label.textContent = "I'm panel n°" + id;
   return node;
 }
+
 function addPanel(where,editor) {
   var node = makePanel(where);
   panels[node.id] = editor.addPanel(node, {position: where, stable: true});
