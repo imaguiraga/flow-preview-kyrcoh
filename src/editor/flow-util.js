@@ -2,7 +2,7 @@
 //var escodegen = require("escodegen");
 import * as esprima from 'esprima';
 import * as escodegen from 'escodegen';
-
+const DEBUG = true;
 export function parseFlow(input){
   // Parse text
   let flowfunc = new Function("module","return new Map();");
@@ -35,7 +35,7 @@ export function parseFlow(input){
       ${ids.join("\n")}
       return result;
     `;
-    console.log(text);
+    if(DEBUG) console.log(text);
     flowfunc = new Function("module",text);
 
   } catch(e) {

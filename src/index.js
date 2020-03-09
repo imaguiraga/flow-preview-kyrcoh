@@ -7,6 +7,7 @@ import {content,parseFlow,createEditor} from "./editor";
 import * as flow from "./preview/flow-element";
 import * as diagram from "./preview/flow-diagram";
 
+const DEBUG = true;
 // Initialize Split Pane
 const splitPane = Split(["#one", "#two"], {
   sizes: [40, 60],
@@ -24,7 +25,6 @@ const splitPane = Split(["#one", "#two"], {
         'flex-basis':  `${gutterSize}px`,
     })
 });
-
 
 const {
   repeat,
@@ -51,9 +51,9 @@ function updatePreviewPane(content){
     // Update preview
     let flowfunc = parseFlow(content);
     let flows = flowfunc(flow);
-    console.log(flows);
-    initFlowSelection(flows);
-    renderFlow(flows.get(flows.keys().next().value));    
+    renderFlow(flows.get(flows.keys().next().value)); 
+    initFlowSelection(flows);   
+
   } catch(e) {
     console.error(e.name + ': ' + e.message);
     graph.data([]);
@@ -62,24 +62,24 @@ function updatePreviewPane(content){
 }
 
 function renderFlow(input){
+  graph.data([]);
   try {
     // Update preview
     let flow = uidvisitor.visit(input);
     const data = visitor.visit(flow);
     graph.data(data!== null ? data : []);
-    graph.render();
 
   } catch(e) {
     console.error(e.name + ': ' + e.message);
-    graph.data([]);
-    graph.render();
   }
+  graph.render();
+  if(DEBUG) console.log("zoom="+graph.getZoom());
+  
 }
-
 
 //console.log(splitPane);
 const editor = createEditor('editor-pane','',(instance) => {
-  console.log('changes');
+  if(DEBUG) console.log('changes');
   const content = instance.getDoc().getValue();
   updatePreviewPane(content);
 }); 
@@ -87,6 +87,7 @@ const editor = createEditor('editor-pane','',(instance) => {
 function initFlowSelection(flows){
   // Populate select component from list of samples
   let selectElt = document.getElementById("flow-preview-select");
+  // Recreate flow options
   while (selectElt.firstChild) {
     selectElt.firstChild.remove();
   }
@@ -109,6 +110,8 @@ editor.setContent(content);
 (function initSampleSelection(samples,callback){
   // Populate select component from list of samples
   let selectElt = document.getElementById("flow-sample-select");
+
+  // Recreate sample options
   while (selectElt.firstChild) {
     selectElt.firstChild.remove();
   }
