@@ -11,8 +11,21 @@ import "codemirror/addon/lint/lint.css";
 import { JSHINT } from "jshint";
 window.JSHINT = JSHINT;
 
-export function createEditor(editor, content, callback){
-  return new EditorWrapper(editor, content, callback);
+export function createEditor(container, content, callback){
+  // Initialize Editor Pane
+    let editor = CodeMirror(
+      document.getElementById(container), {
+        value: content,
+        mode:  "javascript",
+        lineNumbers: true,
+        lineWrapping: true,
+        viewportMargin: 40,
+        foldGutter: true,
+        lint: { 'esversion': '8' }, 
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter","CodeMirror-lint-markers"],
+    });
+
+  return editor;
 }
 
 const panels = {};
@@ -40,37 +53,3 @@ function addPanel(where,editor) {
   var node = makePanel(where);
   panels[node.id] = editor.addPanel(node, {position: where, stable: true});
 }
-
-class EditorWrapper {
-  constructor(editor, content, callback){
-    // Initialize Editor Pane
-    this._cm = CodeMirror(
-      document.getElementById(editor), {
-        value: content,
-        mode:  "javascript",
-        lineNumbers: true,
-        lineWrapping: true,
-        viewportMargin: 40,
-        foldGutter: true,
-        lint: true,
-        lint: { 'esversion': '8' }, 
-        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter","CodeMirror-lint-markers"],
-    });
-    /* (instance/* @CodeMirror , changes  @array<object> {from, to, text, removed, origin} */
-    if(callback){
-      this._cm.on("changes",callback);
-    }
-
-    //addPanel("bottom",this._cm);
-  }
-
-  getContent(){
-    return this._cm.getDoc().getValue();
-  }
-
-  setContent(content){
-    this._cm.getDoc().setValue(content);
-  }
-
-}
-

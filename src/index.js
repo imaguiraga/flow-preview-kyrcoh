@@ -77,8 +77,9 @@ function renderFlow(input){
   
 }
 
-//console.log(splitPane);
-const editor = createEditor('editor-pane','',(instance) => {
+const editor = createEditor('editor-pane','');
+
+editor.on("changes",(instance) => {
   if(DEBUG) console.log('changes');
   const content = instance.getDoc().getValue();
   updatePreviewPane(content);
@@ -105,9 +106,9 @@ function initFlowSelection(flows){
   });
 }
 
-editor.setContent(content);
+editor.getDoc().setValue(content);
 
-(function initSampleSelection(samples,callback){
+(function initSampleSelection(samples,editor){
   // Populate select component from list of samples
   let selectElt = document.getElementById("flow-sample-select");
 
@@ -125,7 +126,8 @@ editor.setContent(content);
   // Update sample when the selection changes 
   selectElt.addEventListener('change', (event) => {
     const result = samples[event.target.value];
-    callback(result);
+    const content = instance.getDoc().getValue();
+    updatePreviewPane(content);
   });
-})(samples,(text)=> {editor.setContent(text)});
+})(samples,editor);
 
