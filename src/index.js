@@ -126,6 +126,7 @@ editor.getDoc().setValue(content);
   // Update sample when the selection changes 
   selectElt.addEventListener('change', (event) => {
     const result = samples[event.target.value];
+    editor.getDoc().setValue(result);
     updatePreviewPane(result);
   });
 })(samples,editor);
