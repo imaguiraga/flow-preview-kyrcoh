@@ -72,7 +72,7 @@ export class G6GraphWidget extends Widget {
     return this._graph;
   }
 
-  get flows(values){
+  get flows(){
     return this._flows;
   }
 
