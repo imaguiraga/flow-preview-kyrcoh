@@ -50,7 +50,7 @@ const {
 const visitor = new G6Visitor();
 const uidvisitor = new UIDVisitor();
 
-function main(): void {
+function main() {
   const commands = new CommandRegistry();
   createMenu(commands);
   let bar = createBarWidget(commands);
@@ -62,17 +62,17 @@ function main(): void {
 
 }
 
-function createMainWidget(palette:any,commands:any){
-  const g6graph: G6GraphWidget = new G6GraphWidget();
+function createMainWidget(palette,commands){
+  const g6graph = new G6GraphWidget();
 
-  const cmSource: CodeMirrorWidget = new CodeMirrorWidget({
+  const cmSource = new CodeMirrorWidget({
     mode: 'text/typescript',
     lineNumbers: true,
     tabSize: 2,
   });
   
   cmSource.title.label = 'Flow EDITOR';
-  cmSource.editor.on("changes",(instance: any) => {
+  cmSource.editor.on("changes",(instance) => {
     //if(DEBUG) 
     console.log('changes');
     try {
@@ -97,7 +97,7 @@ function createMainWidget(palette:any,commands:any){
   }); 
 
   cmSource.valueChanged.connect(
-    function logger(sender: any, value: string): void {
+    function logger(sender, value){
       console.log("valueChanged");
       try {
           // Update preview
@@ -129,7 +129,7 @@ function createMainWidget(palette:any,commands:any){
 
   dock.id = 'dock';
 
-  let savedLayouts: DockPanel.ILayoutConfig[] = [];
+  let savedLayouts = [];
 
   commands.addCommand('save-dock-layout', {
     label: 'Save Layout',
@@ -145,11 +145,11 @@ function createMainWidget(palette:any,commands:any){
   });
 
   commands.addCommand('restore-dock-layout', {
-    label: (args:any) => {
-      return `Restore Layout ${args.index as number}`;
+    label: (args) => {
+      return `Restore Layout ${args.index}`;
     },
-    execute: (args:any) => {
-      dock.restoreLayout(savedLayouts[args.index as number]);
+    execute: (args) => {
+      dock.restoreLayout(savedLayouts[args.index]);
     }
   });
 

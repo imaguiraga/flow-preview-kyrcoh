@@ -1,2 +1,2 @@
 //import "./src/index.js"
-import "./src/widgets/index.ts"
+import "./src/widgets/main.js"
