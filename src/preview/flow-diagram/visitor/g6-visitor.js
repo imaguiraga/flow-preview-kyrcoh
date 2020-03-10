@@ -1,25 +1,28 @@
 export class G6Visitor {
 
   visit(tree,filter){
+    let result = null;
     switch(tree.kind){
       case "choice":
-        return this.visitChoice(tree,filter);
+        result = this.visitChoice(tree,filter);
       break;
       case "optional":
-        return this.visitOptional(tree,filter);
+        result = this.visitOptional(tree,filter);
       break;
       case "sequence":
-        return this.visitSequence(tree,filter);
+        result = this.visitSequence(tree,filter);
       break;
       case "repeat":
-        return this.visitRepeat(tree,filter);
+        result = this.visitRepeat(tree,filter);
       break;
       case "terminal":
-        return this.visitTerminal(tree,filter);
+        result = this.visitTerminal(tree,filter);
+      break;
+      default:
       break;
 
     }
-    return null;
+    return result;
   }
 
   visitSequence(tree,filter){

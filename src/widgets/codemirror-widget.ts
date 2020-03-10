@@ -125,8 +125,3 @@ export class CodeMirrorWidget extends Widget {
   private _samples: Array<string> = [];
 
 }
-
-function logger(sender: any, value: string): void {
-  console.log(sender, value);
-}
-

@@ -29,11 +29,12 @@ const flowEltNodeOptions =    {
   };
 
 export function createFlowGraph(containerId){
+  let containerElt = (typeof containerId === "string") ? document.getElementById(containerId) : containerId;
 
-  const width = document.getElementById(containerId).scrollWidth || 500;
-  const height = document.getElementById(containerId).scrollHeight || 500;
+  const width = containerElt.scrollWidth || 500;
+  const height = containerElt.scrollHeight || 500;
   const graphOptions = {
-    container: containerId,
+    container: containerElt,
     width,
     height,
     layout: {

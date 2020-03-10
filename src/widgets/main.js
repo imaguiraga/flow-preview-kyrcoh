@@ -15,7 +15,7 @@ import {
 } from '@lumino/commands';
 
 import {
-  BoxPanel, CommandPalette, ContextMenu, DockPanel, Menu, MenuBar, Widget
+  BoxPanel, DockPanel, MenuBar, Widget
 } from '@lumino/widgets';
 
 import {
@@ -72,6 +72,7 @@ function createMainWidget(palette,commands){
   });
   
   cmSource.title.label = 'Flow EDITOR';
+  /*
   cmSource.editor.on("changes",(instance) => {
     //if(DEBUG) 
     console.log('changes');
@@ -95,7 +96,7 @@ function createMainWidget(palette,commands){
     }
 
   }); 
-
+//*/
   cmSource.valueChanged.connect(
     function logger(sender, value){
       console.log("valueChanged");
