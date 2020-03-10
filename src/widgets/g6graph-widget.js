@@ -11,6 +11,8 @@ import {
  Widget
 } from '@lumino/widgets';
 
+import * as diagram from "../preview/flow-diagram";
+
 export class G6GraphWidget extends Widget {
 
   constructor() {
@@ -44,7 +46,7 @@ export class G6GraphWidget extends Widget {
     this.node.appendChild(this.content);
 
     this._graph = diagram.createFlowGraph(this.content);
-    this._graph.data(data);
+    this._graph.data([]);
     this._graph.fitView(20); 
     this._graph.render();
 
@@ -92,7 +94,7 @@ export class G6GraphWidget extends Widget {
     });
     // Update flow when the selection changes 
     let self = this;
-    selectElt.addEventListener('change', (event) => {
+    this.selectElt.addEventListener('change', (event) => {
       const result = self._flows.get(event.target.value);
       self.setData(result);
     });
