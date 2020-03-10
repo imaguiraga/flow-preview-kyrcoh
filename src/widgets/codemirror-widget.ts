@@ -89,7 +89,26 @@ export class CodeMirrorWidget extends Widget {
       this._editor.setSize(msg.width, msg.height);
     }
   }
+  // samples
+  set samples(values:Array<any>){
+    // Populate select component from list of samples
+    // Recreate sample options
+    while (this.selectElt.firstChild) {
+      this.selectElt.firstChild.remove();
+    }
 
+    values.forEach((value,index) => {
+      let opt:HTMLOptionElement = document.createElement("option");
+      opt.value = index.toString();
+      opt.text = `Sample #${index +1}`;
+      this.selectElt.add(opt);
+    });
+    // Update sample when the selection changes 
+    this.selectElt.addEventListener('change', (event) => {
+      const result = values[event.target.value];
+      updatePreviewPane(result);
+    });
+  }
   private _editor: CodeMirror.Editor;
   private selectElt: HTMLSelectElement;
 
