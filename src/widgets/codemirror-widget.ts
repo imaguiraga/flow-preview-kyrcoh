@@ -21,8 +21,6 @@ import "codemirror/addon/lint/javascript-lint.js";
 import "codemirror/addon/lint/lint.css";
 import '../style/index.css';
 
-//import './index.css';
-
 //import "tslint";
 //globalThis.JSHINT = JSHINT;
 
