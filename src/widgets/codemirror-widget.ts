@@ -9,6 +9,8 @@ import {
   Widget
 } from '@lumino/widgets';
 
+import { ISignal, Signal } from '@lumino/signaling';
+
 import CodeMirror from "codemirror";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript.js";
@@ -90,7 +92,8 @@ export class CodeMirrorWidget extends Widget {
     }
   }
   // samples
-  set samples(values:Array<any>){
+  set samples(values:Array<string>){
+    this._samples = values;
     // Populate select component from list of samples
     // Recreate sample options
     while (this.selectElt.firstChild) {
@@ -104,12 +107,28 @@ export class CodeMirrorWidget extends Widget {
       this.selectElt.add(opt);
     });
     // Update sample when the selection changes 
-    this.selectElt.addEventListener('change', (event) => {
-      const result = values[event.target.value];
-      updatePreviewPane(result);
+    this.selectElt.addEventListener('change', (event:Event) => {
+      const result:string = this._samples[parseInt((event.target as HTMLSelectElement).value,10)];
+      // Update Editor with current selection 
+      this._editor.getDoc().setValue(result);
+      this._valueChanged.emit(result);
     });
+    // Set default
+    this._editor.getDoc().setValue(this._samples[0]);
   }
+
+  get valueChanged(): ISignal<this, string> {
+    return this._valueChanged;
+  }
+
+  private _valueChanged = new Signal<this, string>(this);
   private _editor: CodeMirror.Editor;
   private selectElt: HTMLSelectElement;
+  private _samples: Array<string> = [];
 
 }
+
+function logger(sender: any, value: string): void {
+  console.log(sender, value);
+}
+
