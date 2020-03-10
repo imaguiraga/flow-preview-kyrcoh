@@ -398,15 +398,15 @@ function createBarWidget(commands:any){
     command: 'example:open-task-manager'
   });
 
-  let menu1 = createMenu();
+  let menu1 = createMenu(commands);
   menu1.title.label = 'File';
   menu1.title.mnemonic = 0;
 
-  let menu2 = createMenu();
+  let menu2 = createMenu(commands);
   menu2.title.label = 'Edit';
   menu2.title.mnemonic = 0;
 
-  let menu3 = createMenu();
+  let menu3 = createMenu(commands);
   menu3.title.label = 'View';
   menu3.title.mnemonic = 0;
 
