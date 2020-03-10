@@ -6,6 +6,8 @@
   "main": "index.html",
   "dependencies": {
     "@antv/g6": "^3.4.0",
+    "@babel/core": "^7.0.0-0",
+    "@babel/preset-typescript": "^7.8.3",
     "@lumino/commands": "^1.10.1",
     "@lumino/default-theme": "^0.2.4",
     "@lumino/dragdrop": "^1.5.1",
@@ -23,8 +25,8 @@
     "split.js": "^1.5.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "tsc && react-scripts start",
+    "build": "tsc && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
