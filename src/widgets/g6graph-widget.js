@@ -19,8 +19,8 @@ export class G6GraphWidget extends Widget {
     super();
     this._flows = new Map();
     this.addClass('CodeMirrorWidget');
-    this.title.label = "G6 Graph";
-    this.title.closable = true;
+    this.title.label = "Flow PREVIEW";
+    this.title.closable = false;
     this.title.caption = `Long description for:G6 Graph`;
 
     let div = document.createElement('div'); 
