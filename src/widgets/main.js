@@ -72,7 +72,7 @@ function createMainWidget(palette,commands){
   });
   
   cmSource.title.label = 'Flow EDITOR';
-  /*
+  
   cmSource.editor.on("changes",(instance) => {
     //if(DEBUG) 
     console.log('changes');
@@ -97,8 +97,10 @@ function createMainWidget(palette,commands){
 
   }); 
 //*/
+
+/*
   cmSource.valueChanged.connect(
-    function logger(sender, value){
+    (sender, value) => {
       console.log("valueChanged");
       try {
           // Update preview
@@ -118,7 +120,7 @@ function createMainWidget(palette,commands){
           console.error(e.name + ': ' + e.message);
         }
     }
-  );
+  );//*/
   
   // set default samples
   cmSource.samples = samples;
