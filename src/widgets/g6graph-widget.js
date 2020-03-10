@@ -60,12 +60,14 @@ export class G6GraphWidget extends Widget {
   onResize(msg) {
     console.log(`onResize : W${this.content.scrollWidth} - H${this.content.scrollHeight} # W${msg.width} - H${msg.height}`);
     if(msg.width > 0 && msg.height > 0 ){
+        
         this._graph.changeSize(
-            Math.max(this.content.scrollWidth,this.node.scrollWidth), 
-            Math.max(this.content.scrollHeight,this.node.scrollHeight)
-        );  
+            Math.max(this.content.clientWidth,this.node.clientWidth), 
+            Math.max(this.content.clientHeight,this.node.clientHeight)
+        ); 
         this._graph.fitView(20); 
         this._graph.render();
+        
     }
   }
   
@@ -103,8 +105,8 @@ export class G6GraphWidget extends Widget {
   setData(_data){
     // resise when data changes
     this._graph.changeSize(
-        Math.min(this.content.scrollWidth,this.node.scrollWidth), 
-        Math.min(this.content.scrollHeight,this.node.scrollHeight)
+        Math.min(this.content.clientWidth,this.node.clientWidth), 
+        Math.min(this.content.clientHeight,this.node.clientHeight)
     );    
     this._graph.data(_data);
     this._graph.fitView(20); 
