@@ -63,7 +63,7 @@ function main() {
 }
 
 function createMainWidget(palette,commands){
-  const g6graph = new G6GraphWidget();
+  const g6graph = new G6GraphWidget(640,640);
 
   const cmSource = new CodeMirrorWidget({
     mode: 'text/typescript',
@@ -98,29 +98,30 @@ function createMainWidget(palette,commands){
   }); 
 //*/
 
-/*
   cmSource.valueChanged.connect(
     (sender, value) => {
       console.log("valueChanged");
-      try {
-          // Update preview
-          let flowfunc = parseFlow(value);
-          let flows = flowfunc(flow);
-          // Convert flows to node data
-          for (let key of flows.keys()) {
+      /*
+        try {
+            // Update preview
+            let flowfunc = parseFlow(value);
+            let flows = flowfunc(flow);
+            // Convert flows to node data
+            for (let key of flows.keys()) {
             let flow = uidvisitor.visit(flows.get(key));
             let value = visitor.visit(flow);
             flows.set(key,value);
             console.log(key)
-          }
-          // Update graph flows
-          g6graph.flows = flows;
+            }
+            // Update graph flows
+            g6graph.flows = flows;
 
         } catch(e) {
-          console.error(e.name + ': ' + e.message);
+            console.error(e.name + ': ' + e.message);
         }
+     //*/   
     }
-  );//*/
+  );
   
   // set default samples
   cmSource.samples = samples;

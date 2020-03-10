@@ -15,7 +15,7 @@ import * as diagram from "../preview/flow-diagram";
 
 export class G6GraphWidget extends Widget {
 
-  constructor() {
+  constructor(_width,_height) {
     super();
     this._flows = new Map();
     this.addClass('CodeMirrorWidget');
@@ -45,7 +45,7 @@ export class G6GraphWidget extends Widget {
     this.content.setAttribute("style","scroll-behavior: auto;overflow: scroll;");
     this.node.appendChild(this.content);
 
-    this._graph = diagram.createFlowGraph(this.content);
+    this._graph = diagram.createFlowGraph(this.content,_width,_height);
     this._graph.data([]);
     this._graph.fitView(20); 
     this._graph.render();
@@ -55,7 +55,6 @@ export class G6GraphWidget extends Widget {
 
   onAfterAttach(msg) {   
     console.log(`onAfterAttach : W${this.content.scrollWidth} - H${this.content.scrollHeight}`);
-   
   }
 
   onResize(msg) {
@@ -64,10 +63,10 @@ export class G6GraphWidget extends Widget {
         this._graph.changeSize(
             Math.max(this.content.scrollWidth,this.node.scrollWidth), 
             Math.max(this.content.scrollHeight,this.node.scrollHeight)
-        ); 
-        this._graph.layout();       
+        );  
+        this._graph.fitView(20); 
+        this._graph.render();
     }
-
   }
   
   get graph(){
@@ -102,10 +101,14 @@ export class G6GraphWidget extends Widget {
   }
 
   setData(_data){
+    // resise when data changes
+    this._graph.changeSize(
+        Math.min(this.content.scrollWidth,this.node.scrollWidth), 
+        Math.min(this.content.scrollHeight,this.node.scrollHeight)
+    );    
     this._graph.data(_data);
     this._graph.fitView(20); 
     this._graph.render();
-    
   }
 
 }
