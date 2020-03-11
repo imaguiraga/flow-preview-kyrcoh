@@ -11,7 +11,7 @@ import "codemirror/addon/lint/lint.css";
 import { JSHINT } from "jshint";
 window.JSHINT = JSHINT;
 
-export function createEditor(container, content, callback){
+export function createEditor(container, content){
   // Initialize Editor Pane
     let editor = CodeMirror(
       document.getElementById(container), {
