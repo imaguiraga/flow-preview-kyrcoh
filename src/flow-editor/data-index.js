@@ -6,7 +6,7 @@ export const content =
   choice,
   zeroOrMore,
   terminal,
-  Terminal,
+  TerminalFlowElt,
   flowgraph,
   G6Visitor,
   UIDVisitor
@@ -53,11 +53,11 @@ let selectClause = function() {
 //*/
 
 function a() {
-  return new Terminal("a");
+  return new TerminalFlowElt("a");
 }
 
 function b() {
-  return new Terminal("b");
+  return new TerminalFlowElt("b");
 }
 
 let testf = new Function('return choice("1", "2", selectClause, "4");');
