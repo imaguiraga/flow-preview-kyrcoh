@@ -20,10 +20,10 @@ import {
 
 import {
   createMenu, createBarWidget, createPalette
-} from './menu-util';
+} from '../widgets/menu-util';
 
-import { CodeMirrorWidget } from "./codemirror-widget";
-import { G6GraphWidget } from "./g6graph-widget";
+import { CodeMirrorWidget } from "../widgets/codemirror-widget";
+import { G6GraphWidget } from "../widgets/g6graph-widget";
 
 import '../style/index.css';
 import {samples} from "../samples.js";
