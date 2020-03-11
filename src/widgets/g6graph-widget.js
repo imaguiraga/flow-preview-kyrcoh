@@ -1,239 +1,5 @@
 import G6 from '@antv/g6';
 //import './widget.css';
-
-const data = {
-  nodes: [
-    {
-      id: '1',
-      dataType: 'alps',
-      name: 'alps_file1',
-      conf: [
-        {
-          label: 'conf',
-          value: 'pai_graph.conf',
-        },
-        {
-          label: 'dot',
-          value: 'pai_graph.dot',
-        },
-        {
-          label: 'init',
-          value: 'init.rc',
-        },
-      ],
-    },
-    {
-      id: '2',
-      dataType: 'alps',
-      name: 'alps_file2',
-      conf: [
-        {
-          label: 'conf',
-          value: 'pai_graph.conf',
-        },
-        {
-          label: 'dot',
-          value: 'pai_graph.dot',
-        },
-        {
-          label: 'init',
-          value: 'init.rc',
-        },
-      ],
-    },
-    {
-      id: '3',
-      dataType: 'alps',
-      name: 'alps_file3',
-      conf: [
-        {
-          label: 'conf',
-          value: 'pai_graph.conf',
-        },
-        {
-          label: 'dot',
-          value: 'pai_graph.dot',
-        },
-        {
-          label: 'init',
-          value: 'init.rc',
-        },
-      ],
-    },
-    {
-      id: '4',
-      dataType: 'sql',
-      name: 'sql_file1',
-      conf: [
-        {
-          label: 'conf',
-          value: 'pai_graph.conf',
-        },
-        {
-          label: 'dot',
-          value: 'pai_graph.dot',
-        },
-        {
-          label: 'init',
-          value: 'init.rc',
-        },
-      ],
-    },
-    {
-      id: '5',
-      dataType: 'sql',
-      name: 'sql_file2',
-      conf: [
-        {
-          label: 'conf',
-          value: 'pai_graph.conf',
-        },
-        {
-          label: 'dot',
-          value: 'pai_graph.dot',
-        },
-        {
-          label: 'init',
-          value: 'init.rc',
-        },
-      ],
-    },
-    {
-      id: '6',
-      dataType: 'feature_etl',
-      name: 'feature_etl_1',
-      conf: [
-        {
-          label: 'conf',
-          value: 'pai_graph.conf',
-        },
-        {
-          label: 'dot',
-          value: 'pai_graph.dot',
-        },
-        {
-          label: 'init',
-          value: 'init.rc',
-        },
-      ],
-    },
-    {
-      id: '7',
-      dataType: 'feature_etl',
-      name: 'feature_etl_1',
-      conf: [
-        {
-          label: 'conf',
-          value: 'pai_graph.conf',
-        },
-        {
-          label: 'dot',
-          value: 'pai_graph.dot',
-        },
-        {
-          label: 'init',
-          value: 'init.rc',
-        },
-      ],
-    },
-    {
-      id: '8',
-      dataType: 'feature_extractor',
-      name: 'feature_extractor',
-      conf: [
-        {
-          label: 'conf',
-          value: 'pai_graph.conf',
-        },
-        {
-          label: 'dot',
-          value: 'pai_graph.dot',
-        },
-        {
-          label: 'init',
-          value: 'init.rc',
-        },
-      ],
-    },
-  ],
-  edges: [
-    {
-      source: '1',
-      target: '2',
-    },
-    {
-      source: '1',
-      target: '3',
-    },
-    {
-      source: '2',
-      target: '4',
-    },
-    {
-      source: '3',
-      target: '4',
-    },
-    {
-      source: '4',
-      target: '5',
-    },
-    {
-      source: '5',
-      target: '6',
-    },
-    {
-      source: '6',
-      target: '7',
-    },
-    {
-      source: '6',
-      target: '8',
-    },
-  ],
-};
-
-G6.registerNode(
-  'sql',
-  {
-    drawShape(cfg, group) {
-      const rect = group.addShape('rect', {
-        attrs: {
-          x: -75,
-          y: -25,
-          width: 150,
-          height: 50,
-          radius: 10,
-          stroke: '#5B8FF9',
-          fill: '#C6E5FF',
-          lineWidth: 3,
-        },
-        name: 'rect-shape',
-      });
-      if (cfg.name) {
-        group.addShape('text', {
-          attrs: {
-            text: cfg.name,
-            x: 0,
-            y: 0,
-            fill: '#00287E',
-            fontSize: 14,
-            textAlign: 'center',
-            textBaseline: 'middle',
-            fontWeight: 'bold',
-          },
-          name: 'text-shape',
-        });
-      }
-      return rect;
-    },
-  },
-  'single-node',
-);
-G6.Global.nodeStateStyle.selected = {
-  stroke: '#d9d9d9',
-  fill: '#5394ef',
-};
-
 /* tslint:disable */ 
 import 'es6-promise/auto';  // polyfill Promise on IE
 
@@ -245,13 +11,16 @@ import {
  Widget
 } from '@lumino/widgets';
 
+import * as diagram from "../flow-diagram";
+
 export class G6GraphWidget extends Widget {
 
-  constructor() {
+  constructor(_width,_height) {
     super();
+    this._flows = new Map();
     this.addClass('CodeMirrorWidget');
-    this.title.label = "G6 Graph";
-    this.title.closable = true;
+    this.title.label = "Flow PREVIEW";
+    this.title.closable = false;
     this.title.caption = `Long description for:G6 Graph`;
 
     let div = document.createElement('div'); 
@@ -275,83 +44,73 @@ export class G6GraphWidget extends Widget {
     this.content.setAttribute("class","content-pane");
     this.content.setAttribute("style","scroll-behavior: auto;overflow: scroll;");
     this.node.appendChild(this.content);
-    this.graph = new G6.Graph({
-        container: this.content,
-        width: 640,//this.content.scrollWidth ,
-        height: 640,//this.content.scrollHeight,
-        layout: {
-            type: 'dagre',
-            nodesepFunc: d => {
-            if (d.id === '3') {
-                return 400;
-            }
-            return 50;
-            },
-            ranksep: 70,
-        },
-        defaultNode: {
-            type: 'sql',
-        },
-        defaultEdge: {
-            type: 'polyline',
-            style: {
-            radius: 20,
-            offset: 45,
-            endArrow: true,
-            lineWidth: 2,
-            stroke: '#C2C8D5',
-            },
-        },
-        modes: {
-            default: [
-            'drag-canvas',
-            'zoom-canvas',
-            'click-select',
-            {
-                type: 'tooltip',
-                formatText(model) {
-                const cfg = model.conf;
-                const text = [];
-                cfg.forEach(row => {
-                    text.push(row.label + ':' + row.value + '<br>');
-                });
-                return text.join('\n');
-                },
-                shouldUpdate: e => {
-                // 如果移动到节点文本上显示，不是文本上不显示
-                if (e.target.type !== 'text') {
-                    return false;
-                }
-                return true;
-                },
-            },
-            ],
-        },
-        fitView: true,
-        minZoom: 0.002,
-        maxZoom: 20
-    });
-    this.graph.data(data);
-    this.graph.fitView(20); 
-    this.graph.render();
+
+    this._graph = diagram.createFlowGraph(this.content,_width,_height);
+    this._graph.data([]);
+    this._graph.fitView(20); 
+    this._graph.render();
 
     console.log(`ctor : W${this.content.scrollWidth} - H${this.content.scrollHeight}`);
   }
 
   onAfterAttach(msg) {   
     console.log(`onAfterAttach : W${this.content.scrollWidth} - H${this.content.scrollHeight}`);
-   
   }
 
   onResize(msg) {
     console.log(`onResize : W${this.content.scrollWidth} - H${this.content.scrollHeight} # W${msg.width} - H${msg.height}`);
     if(msg.width > 0 && msg.height > 0 ){
-        this.graph.changeSize(
-            Math.max(this.content.scrollWidth,this.node.scrollWidth), 
-            Math.max(this.content.scrollHeight,this.node.scrollHeight)
+        
+        this._graph.changeSize(
+            Math.max(this.content.clientWidth,this.node.clientWidth), 
+            Math.max(this.content.clientHeight,this.node.clientHeight)
         ); 
-        this.graph.layout();       
+        this._graph.fitView(20); 
+        this._graph.render();
+        
+    }
+  }
+  
+  get graph(){
+    return this._graph;
+  }
+
+  get flows(){
+    return this._flows;
+  }
+
+  set flows(values){
+    this._flows = values;
+    // Populate select component from list of samples
+    // Recreate flow options
+    while (this.selectElt.firstChild) {
+      this.selectElt.firstChild.remove();
     }
 
+    values.forEach((value,key) => {
+      let opt = document.createElement("option");
+      opt.value = key;
+      opt.text = key;
+      this.selectElt.add(opt);
+    });
+    // Update flow when the selection changes 
+    let self = this;
+    this.selectElt.addEventListener('change', (event) => {
+      const result = self._flows.get(event.target.value);
+      self.setData(result);
+    });
+    this.setData(values.get(values.keys().next().value));
   }
+
+  setData(_data){
+    // resise when data changes
+    this._graph.changeSize(
+        Math.min(this.content.clientWidth,this.node.clientWidth), 
+        Math.min(this.content.clientHeight,this.node.clientHeight)
+    );    
+    this._graph.data(_data);
+    this._graph.fitView(20); 
+    this._graph.render();
+  }
+
 }
