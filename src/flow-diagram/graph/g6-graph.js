@@ -71,7 +71,7 @@ export function createFlowGraph(containerId){
     },
     fitView: true,
     minZoom: 0.002,
-    mazZoom: 20
+    maxZoom: 20
   };
   const graph = new G6.Graph(graphOptions);
 

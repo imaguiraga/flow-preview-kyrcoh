@@ -1,10 +1,10 @@
-import {NonTerminalElt} from "./terminal.js"
+import {CompositeFlowElt} from "./terminal.js"
 
 /**
  * Class OptionalElt.
- * @extends NonTerminalElt
+ * @extends CompositeFlowElt
  */
-export class OptionalElt extends NonTerminalElt{
+export class OptionalElt extends CompositeFlowElt{
   /**
    * Create a OptionalElt.
    * @param {object} elts - The elts value.

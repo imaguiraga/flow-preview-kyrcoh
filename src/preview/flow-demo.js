@@ -1,5 +1,5 @@
-import * as flow from "./flow-element";
-import * as diagram from "./flow-diagram";
+import * as flow from "../flow-dsl";
+import * as diagram from "../flow-diagram";
 const {
   repeat,
   sequence,
@@ -7,7 +7,7 @@ const {
   choice,
   zeroOrMore,
   terminal,
-  TerminalElt
+  TerminalFlowElt
 } = flow;
 
 const {

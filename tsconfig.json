@@ -3,11 +3,14 @@
     "./src/*"
   ],
   "compilerOptions": {
+    "declaration": false,
     "allowJs": true,
     "strict": true,
     "lib": [
-      "dom",
-      "es2015"
+      "ES5",
+      "ES2015.Promise",
+      "ES2015.Iterable",
+      "DOM"
     ],
     "jsx": "react",
     "target": "es5",
