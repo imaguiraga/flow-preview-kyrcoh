@@ -27,10 +27,10 @@ import { G6GraphWidget } from "./g6graph-widget";
 
 import '../style/index.css';
 import {samples} from "../samples.js";
-import {content,parseFlow,createEditor} from "../editor";
+import {content,parseFlow,createEditor} from "../flow-editor";
 
-import * as flow from "../preview/flow-element";
-import * as diagram from "../preview/flow-diagram";
+import * as flow from "../flow-dsl";
+import * as diagram from "../flow-diagram";
 
 const {
   repeat,

@@ -11,7 +11,7 @@ import {
  Widget
 } from '@lumino/widgets';
 
-import * as diagram from "../preview/flow-diagram";
+import * as diagram from "../flow-diagram";
 
 export class G6GraphWidget extends Widget {
 
