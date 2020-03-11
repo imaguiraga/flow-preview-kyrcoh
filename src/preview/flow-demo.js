@@ -7,7 +7,7 @@ const {
   choice,
   zeroOrMore,
   terminal,
-  TerminalElt
+  TerminalFlowElt
 } = flow;
 
 const {
