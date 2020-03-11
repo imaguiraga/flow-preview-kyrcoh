@@ -2,12 +2,12 @@
 import 'es6-promise/auto';  // polyfill Promise on IE
 
 import CodeMirror from "codemirror";
-import "codemirror/lib/codemirror.css";
+import "../flow-editor/node_modules/codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript.js";
 import "codemirror/addon/display/panel.js";
 import "codemirror/addon/lint/lint.js";
 import "codemirror/addon/lint/javascript-lint.js";
-import "codemirror/addon/lint/lint.css";
+import "../flow-editor/node_modules/codemirror/addon/lint/lint.css";
 //import "jshint/src/jshint.js";
 //import * as jshint from "jshint";
 import { JSHINT } from "jshint";
@@ -18,7 +18,7 @@ import {
 } from '@lumino/commands';
 
 import {
-  Message, ResizeMessage
+  Message
 } from '@lumino/messaging';
 
 import {
@@ -53,7 +53,7 @@ export default class CodeMirrorWidget extends Widget {
     this._editor.refresh();
   }
 
-  protected onResize(msg: ResizeMessage): void {
+  protected onResize(msg: Widget.ResizeMessage): void {
     if (msg.width < 0 || msg.height < 0) {
       this._editor.refresh();
     } else {
