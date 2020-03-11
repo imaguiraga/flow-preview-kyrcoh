@@ -1,10 +1,10 @@
 /**
- * Class TerminalElt.
+ * Class TerminalFlowElt.
  */
-export class TerminalElt {
+export class TerminalFlowElt {
   static ID = 0;
   /**
-   * Create a NonTerminalElt.
+   * Create a CompositeFlowElt.
    * @param {object} elts - The elts value.
    * @param {object} ctx - The ctx value.
    * @param {string} kind - The kind value.
@@ -22,9 +22,9 @@ export class TerminalElt {
     }
     
     //get new id
-    TerminalElt.ID = TerminalElt.ID + 1;
+    TerminalFlowElt.ID = TerminalFlowElt.ID + 1;
     self.kind = kind || "terminal";
-    self.id = self.kind + "." + TerminalElt.ID;
+    self.id = self.kind + "." + TerminalFlowElt.ID;
     
     self.start = this;
     self.finish = this;
@@ -89,16 +89,16 @@ export class TerminalElt {
 }
 
 export function terminal(elt) {
-  return new TerminalElt(elt);
+  return new TerminalFlowElt(elt);
 }
 
 /**
- * Class NonTerminalElt.
- * @extends TerminalElt
+ * Class CompositeFlowElt.
+ * @extends TerminalFlowElt
  */
-export class NonTerminalElt extends TerminalElt {
+export class CompositeFlowElt extends TerminalFlowElt {
   /**
-   * Create a NonTerminalElt.
+   * Create a CompositeFlowElt.
    * @param {object} elts - The elts value.
    * @param {object} ctx - The ctx value.
    * @param {string} kind - The kind value.
@@ -108,8 +108,8 @@ export class NonTerminalElt extends TerminalElt {
     let self = this;
     self.elts = [];
     self.title = null;
-    self.start = new TerminalElt("start",null,"start");
-    self.finish = new TerminalElt("finish",null,"finish");
+    self.start = new TerminalFlowElt("start",null,"start");
+    self.finish = new TerminalFlowElt("finish",null,"finish");
 
     if(Array.isArray(elts)) {
       self.elts = elts.map(self.resolveElt).filter( e => { return e!= null});
