@@ -33,9 +33,8 @@ export function createFlowGraph(containerId,_width,_height){
 
   const width = _width || 640;
   const height = _height || 800;
-  
   const graphOptions = {
-    container: containerId,
+    container: containerElt,
     width,
     height,
     layout: {

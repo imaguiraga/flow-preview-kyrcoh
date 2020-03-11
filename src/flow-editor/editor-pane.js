@@ -11,13 +11,13 @@ import "codemirror/addon/lint/lint.css";
 import { JSHINT } from "jshint";
 window.JSHINT = JSHINT;
 
-export function createEditor(container, content){
+export function createEditor(container, content, mode){
     let containerElt = (typeof container === "string") ? document.getElementById(container) : container;
   // Initialize Editor Pane
     let editor = CodeMirror(
     containerElt, {
         value: content,
-        mode:  "javascript",
+        mode:  mode || "javascript",
         lineNumbers: true,
         lineWrapping: true,
         viewportMargin: 40,

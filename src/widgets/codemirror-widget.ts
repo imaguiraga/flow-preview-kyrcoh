@@ -9,6 +9,8 @@ import {
   Widget
 } from '@lumino/widgets';
 
+import { ISignal, Signal } from '@lumino/signaling';
+
 import CodeMirror from "codemirror";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript.js";
@@ -18,8 +20,6 @@ import "codemirror/addon/lint/lint.js";
 import "codemirror/addon/lint/javascript-lint.js";
 import "codemirror/addon/lint/lint.css";
 import '../style/index.css';
-
-//import './index.css';
 
 //import "tslint";
 //globalThis.JSHINT = JSHINT;
@@ -89,8 +89,39 @@ export class CodeMirrorWidget extends Widget {
       this._editor.setSize(msg.width, msg.height);
     }
   }
+  // samples
+  set samples(values:Array<string>){
+    this._samples = values;
+    // Populate select component from list of samples
+    // Recreate sample options
+    while (this.selectElt.firstChild) {
+      this.selectElt.firstChild.remove();
+    }
 
+    values.forEach((value,index) => {
+      let opt:HTMLOptionElement = document.createElement("option");
+      opt.value = index.toString();
+      opt.text = `Sample #${index +1}`;
+      this.selectElt.add(opt);
+    });
+    // Update sample when the selection changes 
+    this.selectElt.addEventListener('change', (event:Event) => {
+      const result:string = this._samples[parseInt((event.target as HTMLSelectElement).value,10)];
+      // Update Editor with current selection 
+      this._editor.getDoc().setValue(result);
+      this._valueChanged.emit(result);
+    });
+    // Set default
+    this._editor.getDoc().setValue(this._samples[0]);
+  }
+
+  get valueChanged(): ISignal<this, string> {
+    return this._valueChanged;
+  }
+
+  private _valueChanged = new Signal<this, string>(this);
   private _editor: CodeMirror.Editor;
   private selectElt: HTMLSelectElement;
+  private _samples: Array<string> = [];
 
 }
