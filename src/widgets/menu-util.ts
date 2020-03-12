@@ -1,10 +1,5 @@
-
 import {
-  CommandRegistry
-} from '@lumino/commands';
-
-import {
-  BoxPanel, CommandPalette, ContextMenu, DockPanel, Menu, MenuBar, Widget
+  CommandPalette, ContextMenu, Menu, MenuBar
 } from '@lumino/widgets';
 
 export function createMenu(commands:any): Menu {

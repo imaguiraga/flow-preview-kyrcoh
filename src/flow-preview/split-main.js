@@ -53,19 +53,9 @@ const splitPane = Split(["#one", "#two"], {
 });
 
 const {
-  repeat,
-  sequence,
-  optional,
-  choice,
-  zeroOrMore,
-  terminal,
-  TerminalFlowElt
-} = flow;
-
-const {
   G6Visitor,
   UIDVisitor
-} = diagram;
+} = flow;
 
 const visitor = new G6Visitor();
 const uidvisitor = new UIDVisitor();
