@@ -7,13 +7,9 @@ const {
   choice,
   zeroOrMore,
   terminal,
-  TerminalFlowElt
-} = flow;
-
-const {
   G6Visitor,
   UIDVisitor
-} = diagram;
+} = flow;
 
 let selectClause = () => sequence(a, b, repeat(optional("c")), zeroOrMore("d"));
 let fromClause = () => choice("1", "2", selectClause, "4");
@@ -34,6 +30,7 @@ let func = new Function("module",`const {
     zeroOrMore,
     terminal
   } = module;
+  
   let f = choice(
     "a",
     choice("e", "d"),

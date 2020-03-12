@@ -1,11 +1,5 @@
-import G6 from '@antv/g6';
-//import './widget.css';
 /* tslint:disable */ 
 import 'es6-promise/auto';  // polyfill Promise on IE
-
-import {
-  Message
-} from '@lumino/messaging';
 
 import {
  Widget
