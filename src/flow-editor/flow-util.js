@@ -32,7 +32,9 @@ export function parseFlow(input){
         zeroOrMore,
         terminal
       } = module;
+
       ${input}
+      
       let result = new Map();
       ${ids.join("\n")}
       return result;
