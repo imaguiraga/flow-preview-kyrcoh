@@ -42,12 +42,12 @@ export class G6Visitor {
   }
 
   visitTerminal(tree,filter){
-    return TerminalEltG6Visitor.visit(this,tree,filter);
+    return TerminalFlowEltG6Visitor.visit(this,tree,filter);
   }
 }
 
 
-export class TerminalEltG6Visitor{
+export class TerminalFlowEltG6Visitor{
   static visit(visitor,tree,filter) {
     const g6data = {
       nodes: [],
