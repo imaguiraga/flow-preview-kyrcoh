@@ -4,10 +4,10 @@
 import * as esprima from 'esprima';
 
 const DEBUG = false;
-export function parseFlow(input){
+export function parseDsl(input,dslModule){
   // Parse text
   // eslint-disable-next-line
-  let flowfunc = new Function("module","return new Map();");
+  let factoryfunc = new Function("module","return new Map();");
   try {
     let tree = esprima.parseScript(input);
     // Modify AST
@@ -41,11 +41,12 @@ export function parseFlow(input){
     `;
     if(DEBUG) console.log(text);
     // eslint-disable-next-line
-    flowfunc = new Function("module",text);
+    factoryfunc = new Function("module",text);
 
   } catch(e) {
     console.error(e.name + ': ' + e.message);
   }
   
-  return flowfunc;
+  return factoryfunc(dslModule);
+
 }

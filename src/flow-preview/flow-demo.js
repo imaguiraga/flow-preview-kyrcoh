@@ -49,6 +49,6 @@ const uidvisitor = new UIDVisitor();
 testflow = uidvisitor.visit(testflow);
 const data = visitor.visit(testflow);
 
-let graph = diagram.createFlowGraph("container");
+let graph = diagram.createFlowDiagram("container");
 graph.data(data);
 graph.render();
