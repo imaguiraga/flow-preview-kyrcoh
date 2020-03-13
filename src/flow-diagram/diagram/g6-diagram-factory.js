@@ -1,5 +1,5 @@
 import G6 from "@antv/g6";
-import {NODE_KIND_CFG} from "./node-config.js";
+import {NODE_KIND_CFG} from "./g6-node-config.js";
 
 const flowEltNodeOptions =    {
       drawShape(cfg, group) {
@@ -30,7 +30,7 @@ const flowEltNodeOptions =    {
     fill: "#5394ef"
   };
 
-export function createFlowGraph(containerId,_width,_height){
+export function createFlowDiagram(containerId,_width,_height){
   let containerElt = (typeof containerId === "string") ? document.getElementById(containerId) : containerId;
 
   const width = _width || 640;

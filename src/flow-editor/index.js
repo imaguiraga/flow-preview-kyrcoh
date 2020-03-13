@@ -1,1 +1,1 @@
-export * from "./editor-factory.js";
+export * from "./cm-editor-factory.js";

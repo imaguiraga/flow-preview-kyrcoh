@@ -61,7 +61,7 @@ const {
 const visitor = new G6Visitor();
 const uidvisitor = new UIDVisitor();
 
-const graph = diagram.createFlowGraph("preview-pane");
+const graph = diagram.createFlowDiagram("preview-pane");
 
 function updatePreviewPane(content){
   try {

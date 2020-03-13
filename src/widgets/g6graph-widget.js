@@ -39,7 +39,7 @@ export class G6GraphWidget extends Widget {
     this.content.setAttribute("style","scroll-behavior: auto;overflow: scroll;");
     this.node.appendChild(this.content);
 
-    this._graph = diagram.createFlowGraph(this.content,_width,_height);
+    this._graph = diagram.createFlowDiagram(this.content,_width,_height);
     this._graph.data([]);
     this._graph.fitView(20); 
     this._graph.render();
