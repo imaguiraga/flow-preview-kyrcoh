@@ -3,6 +3,7 @@ import {
   GET_NODE_CONFIG, 
   NODE_OPTIONS, 
   NODE_TYPE, 
+  CUSTOM_NODE_TYPE,
   DEFAULT_NODE, 
   DEFAULT_EDGE 
 } from "./g6-node-config.js";
