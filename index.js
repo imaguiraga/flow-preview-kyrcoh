@@ -1,2 +1,2 @@
-//import "./src/flow-preview/widget-main.js";
-import "./src/flow-preview/split-main.js";
+//import "./src/flow-preview/widget-preview.js";
+import "./src/flow-preview/split-preview.js";
