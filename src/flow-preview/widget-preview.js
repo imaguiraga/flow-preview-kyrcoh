@@ -27,13 +27,13 @@ import { G6GraphWidget } from "../widgets/g6graph-widget";
 
 import '../style/index.css';
 import {samples} from "../samples.js";
-import {parseFlow} from "../flow-editor";
 
 import * as flow from "../flow-dsl";
 
 const {
   G6Visitor,
-  UIDVisitor
+  UIDVisitor,
+  parseFlow
 } = flow;
 
 

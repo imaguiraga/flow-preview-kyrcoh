@@ -2,7 +2,8 @@ import "../styles.css";
 // using ES6 modules
 import Split from "split.js";
 import {samples} from "../samples.js";
-import {content,parseFlow,createEditor} from "../flow-editor";
+import {createEditor} from "../flow-editor";
+import {parseFlow} from "../flow-dsl";
 
 import * as flow from "../flow-dsl";
 import * as diagram from "../flow-diagram";
@@ -122,7 +123,6 @@ function initFlowSelection(flows){
   });
 }
 
-editor.getDoc().setValue(content);
 
 (function initSampleSelection(samples,editor){
   // Populate select component from list of samples
@@ -145,4 +145,7 @@ editor.getDoc().setValue(content);
     editor.getDoc().setValue(result);
     updatePreviewPane(result);
   });
+  
+  editor.getDoc().setValue(samples[0]);
+  
 })(samples,editor);
