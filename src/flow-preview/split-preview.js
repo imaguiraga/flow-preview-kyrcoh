@@ -3,7 +3,7 @@ import "../styles.css";
 import Split from "split.js";
 import {samples} from "../samples.js";
 import {createEditor} from "../flow-editor";
-import {parseFlow} from "../flow-dsl";
+import {parseDsl} from "../flow-dsl";
 
 import * as flow from "../flow-dsl";
 import * as diagram from "../flow-diagram";
@@ -66,8 +66,7 @@ const graph = diagram.createFlowDiagram("preview-pane");
 function updatePreviewPane(content){
   try {
     // Update preview
-    let flowfunc = parseFlow(content);
-    let flows = flowfunc(flow);
+    let flows = parseDsl(content,flow);
     renderFlow(flows.get(flows.keys().next().value)); 
     initFlowSelection(flows);   
 

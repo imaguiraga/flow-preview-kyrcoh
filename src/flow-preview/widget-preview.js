@@ -33,7 +33,7 @@ import * as flow from "../flow-dsl";
 const {
   G6Visitor,
   UIDVisitor,
-  parseFlow
+  parseDsl
 } = flow;
 
 
@@ -69,8 +69,8 @@ function createMainWidget(palette,commands){
     try {
       // Update preview
       let content = instance.getDoc().getValue();
-      let flowfunc = parseFlow(content);
-      let flows = flowfunc(flow);
+      let flows = parseDsl(content,flow);
+
       // Convert flows to node data
       for (let key of flows.keys()) {
         let flow = uidvisitor.visit(flows.get(key));
@@ -94,7 +94,7 @@ function createMainWidget(palette,commands){
       /*
         try {
             // Update preview
-            let flowfunc = parseFlow(value);
+            let flowfunc = parseDsl(value);
             let flows = flowfunc(flow);
             // Convert flows to node data
             for (let key of flows.keys()) {
