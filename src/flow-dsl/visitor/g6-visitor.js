@@ -2,7 +2,7 @@ export class G6Visitor {
 
   visit(tree,filter){
     let result = null;
-    switch(tree.kind){
+    switch(tree.tagName){
       case "choice":
         result = this.visitChoice(tree,filter);
       break;
@@ -58,7 +58,7 @@ export class TerminalFlowEltG6Visitor{
       id: tree.id,
       label: tree.id ,
       model: { 
-        kind: 'terminal'
+        tagName: 'terminal'
       }
     };
     if (filter) {
@@ -79,7 +79,7 @@ export class SequenceEltG6Visitor{
       nodes: [],
       edges: []
     };
-    if (tree.kind !== "sequence") {
+    if (tree.tagName !== "sequence") {
       return g6data;
     }
     // start + finish nodes
@@ -87,21 +87,21 @@ export class SequenceEltG6Visitor{
       id: tree.start.id,
       label: tree.start.id,
       model: { 
-        kind: 'sequence.start'
+        tagName: 'sequence.start'
       }
     });
     // nodes
-    if (tree.kind === "sequence") {
+    if (tree.tagName === "sequence") {
       tree.elts.forEach(node => {
         // keep only terminal nodes
-        if (node.kind !== "terminal") {
+        if (node.tagName !== "terminal") {
           return;
         }
         let n = {
           id: node.id,
           label: node.id,
           model: { 
-            kind: 'sequence.terminal'
+            tagName: 'sequence.terminal'
           }
         };
         if (filter) {
@@ -117,7 +117,7 @@ export class SequenceEltG6Visitor{
       id: tree.finish.id,
       label: tree.finish.id ,
       model: { 
-        kind: 'sequence.finish'
+        tagName: 'sequence.finish'
       }
     });
     // edges
@@ -159,7 +159,7 @@ export class ChoiceEltG6Visitor{
       edges: []
     };
     //
-    if (tree.kind !== "choice") {
+    if (tree.tagName !== "choice") {
       return g6data
     }
     // start + finish nodes
@@ -167,22 +167,22 @@ export class ChoiceEltG6Visitor{
       id: tree.start.id,
       label: tree.start.id,
       model: { 
-        kind: 'choice.start'
+        tagName: 'choice.start'
       }
     });
 
     // nodes
-    if (tree.kind === "choice") {
+    if (tree.tagName === "choice") {
       tree.elts.forEach(node => {
         // keep only terminal nodes
-        if (node.kind !== "terminal") {
+        if (node.tagName !== "terminal") {
           return;
         }
         let n = {
           id: node.id,
           label: node.id,
           model: { 
-            kind: 'choice.terminal'
+            tagName: 'choice.terminal'
           }
         };
 
@@ -199,7 +199,7 @@ export class ChoiceEltG6Visitor{
       id: tree.finish.id,
       label: tree.finish.id ,
       model: { 
-        kind: 'choice.finish'
+        tagName: 'choice.finish'
       }
     });
     // edges
@@ -234,7 +234,7 @@ export class OptionalEltG6Visitor{
       nodes: [],
       edges: []
     };
-    if (tree.kind !== "optional") {
+    if (tree.tagName !== "optional") {
       return g6data;
     }
     // start + finish nodes
@@ -242,22 +242,22 @@ export class OptionalEltG6Visitor{
       id: tree.start.id,
       label: tree.start.id ,
       model: { 
-        kind: 'optional.start'
+        tagName: 'optional.start'
       }
     });
 
     // nodes
-    if (tree.kind === "optional") {
+    if (tree.tagName === "optional") {
       tree.elts.forEach(node => {
         // keep only terminal nodes
-        if (node.kind !== "terminal") {
+        if (node.tagName !== "terminal") {
           return;
         }
         let n = {
           id: node.id,
           label: node.id ,
           model: { 
-            kind: 'optional.terminal'
+            tagName: 'optional.terminal'
           }
         };
         if (filter) {
@@ -273,7 +273,7 @@ export class OptionalEltG6Visitor{
       id: tree.finish.id,
       label: tree.finish.id ,
       model: { 
-        kind: 'optional.finish'
+        tagName: 'optional.finish'
       }
     });
     // edges
@@ -312,7 +312,7 @@ export class RepeatEltG6Visitor{
       nodes: [],
       edges: []
     };
-    if (tree.kind !== "repeat") {
+    if (tree.tagName !== "repeat") {
       return g6data;
     }
     // start + finish nodes
@@ -320,22 +320,22 @@ export class RepeatEltG6Visitor{
       id: tree.start.id,
       label: tree.start.id,
       model: { 
-        kind: 'repeat.start'
+        tagName: 'repeat.start'
       }
     });
 
     // nodes
-    if (tree.kind === "repeat") {
+    if (tree.tagName === "repeat") {
       tree.elts.forEach(node => {
         // keep only terminal nodes
-        if (node.kind !== "terminal") {
+        if (node.tagName !== "terminal") {
           return;
         }
         let n = {
           id: node.id,
           label: node.id ,
           model: { 
-            kind: 'repeat.terminal'
+            tagName: 'repeat.terminal'
           }
         };
         if (filter) {
@@ -352,7 +352,7 @@ export class RepeatEltG6Visitor{
       id: tree.finish.id,
       label: tree.finish.id,
       model: { 
-        kind: 'repeat.finish'
+        tagName: 'repeat.finish'
       }
     });
     // edges

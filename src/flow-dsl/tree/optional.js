@@ -9,10 +9,10 @@ export class OptionalElt extends CompositeFlowElt{
    * Create a OptionalElt.
    * @param {object} elts - The elts value.
    * @param {object} ctx - The ctx value.
-   * @param {string} kind - The kind value.
+   * @param {string} tagName - The tagName value.
    */
-  constructor(elts,ctx,kind)  {
-    super(elts,ctx,kind || "optional");
+  constructor(elts,ctx,tagName)  {
+    super(elts,ctx,tagName || "optional");
   }
 
   add(elt){

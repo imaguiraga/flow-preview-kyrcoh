@@ -7,9 +7,9 @@ export class TerminalFlowElt {
    * Create a CompositeFlowElt.
    * @param {object} elts - The elts value.
    * @param {object} ctx - The ctx value.
-   * @param {string} kind - The kind value.
+   * @param {string} tagName - The tagName value.
    */
-  constructor(elts,ctx,kind) {
+  constructor(elts,ctx,tagName) {
     let self = this;
     self.title = "title";
     self.elts = [];
@@ -23,8 +23,8 @@ export class TerminalFlowElt {
     
     //get new id
     TerminalFlowElt.ID = TerminalFlowElt.ID + 1;
-    self.kind = kind || "terminal";
-    self.id = self.kind + "." + TerminalFlowElt.ID;
+    self.tagName = tagName || "terminal";
+    self.id = self.tagName + "." + TerminalFlowElt.ID;
     
     self.start = this;
     self.finish = this;
@@ -101,10 +101,10 @@ export class CompositeFlowElt extends TerminalFlowElt {
    * Create a CompositeFlowElt.
    * @param {object} elts - The elts value.
    * @param {object} ctx - The ctx value.
-   * @param {string} kind - The kind value.
+   * @param {string} tagName - The tagName value.
    */
-  constructor(elts,ctx,kind) {
-    super(elts,ctx,kind);
+  constructor(elts,ctx,tagName) {
+    super(elts,ctx,tagName);
     let self = this;
     self.elts = [];
     self.title = null;
