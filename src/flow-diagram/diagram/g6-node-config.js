@@ -19,7 +19,7 @@ const flowEltNodeOptions =    {
 };
 
 
-const NODE_KIND_CONFIG = new Map([
+const NODE_TAGNAME_CONFIG = new Map([
   // Choice
   ["choice.start", {
     style: {
@@ -116,8 +116,8 @@ const NODE_KIND_CONFIG = new Map([
 
 export const GET_NODE_CONFIG = function(node) {
   // Compute stroke and textColor
-  if(NODE_KIND_CONFIG.has(node.model.kind)) {
-    return NODE_KIND_CONFIG.get(node.model.kind);
+  if(NODE_TAGNAME_CONFIG.has(node.model.tagName)) {
+    return NODE_TAGNAME_CONFIG.get(node.model.tagName);
   }
 
   return {};
