@@ -44,7 +44,7 @@ export function createFlowDiagram(containerId,_width,_height){
     maxZoom: 20
   };
 
-// Override node default config based on nodde.kind
+// Override node default config based on nodde.tagName
   const graph = new G6.Graph(graphOptions);
   graph.node(GET_NODE_CONFIG);
 

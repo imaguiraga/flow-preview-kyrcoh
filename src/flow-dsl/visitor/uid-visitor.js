@@ -6,16 +6,16 @@ export class UIDVisitor {
 
   visit(tree,filter){
     // Non terminal nodes have start and finish
-    if( tree.kind !== "terminal"){
-      tree.start.id = this._prefix + ":" + tree.kind + ".start";
-      tree.finish.id = this._prefix + ":" + tree.kind + ".finish";
+    if( tree.tagName !== "terminal"){
+      tree.start.id = this._prefix + ":" + tree.tagName + ".start";
+      tree.finish.id = this._prefix + ":" + tree.tagName + ".finish";
     }
     
     tree.elts.filter(elt => elt instanceof Object).forEach(
       (elt,index) =>  {
         // keep only terminal nodes
         let p = this._prefix.concat("."+index);
-        elt.id = p + ":" + elt.kind;
+        elt.id = p + ":" + elt.tagName;
         elt.accept(new UIDVisitor(p),null);
       });
     return tree;
