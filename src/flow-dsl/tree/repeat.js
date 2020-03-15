@@ -9,10 +9,10 @@ export class RepeatElt extends CompositeFlowElt {
    * Create a RepeatElt.
    * @param {object} elts - The elts value.
    * @param {object} ctx - The ctx value.
-   * @param {string} kind - The kind value.
+   * @param {string} tagName - The tagName value.
    */
-  constructor(elts,ctx,kind) {
-    super(elts,ctx,kind ||"repeat");
+  constructor(elts,ctx,tagName) {
+    super(elts,ctx,tagName ||"repeat");
   }
 
   add(elt){
