@@ -3,11 +3,11 @@ import "../styles.css";
 import Split from "split.js";
 import {samples} from "../samples.js";
 import {createEditor} from "../flow-editor";
-import {parseDsl} from "../flow-dsl";
 
 import * as flow from "../flow-dsl";
 import * as diagram from "../flow-diagram";
 
+const {parseDsl} = flow;
 const DEBUG = true;
 
 document.body.innerHTML = `
