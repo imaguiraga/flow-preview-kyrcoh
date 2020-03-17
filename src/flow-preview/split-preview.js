@@ -3,11 +3,11 @@ import "../styles.css";
 import Split from "split.js";
 import {samples} from "../samples.js";
 import {createEditor} from "../flow-editor";
-import {parseDsl} from "../flow-dsl";
 
 import * as flow from "../flow-dsl";
 import * as diagram from "../flow-diagram";
 
+const {parseDsl} = flow;
 const DEBUG = true;
 
 document.body.innerHTML = `
@@ -54,12 +54,12 @@ const splitPane = Split(["#one", "#two"], {
 });
 
 const {
-  G6Visitor,
-  UIDVisitor
+  FlowToG6Visitor,
+  FlowUIDVisitor
 } = flow;
 
-const visitor = new G6Visitor();
-const uidvisitor = new UIDVisitor();
+const visitor = new FlowToG6Visitor();
+const uidvisitor = new FlowUIDVisitor();
 
 const graph = diagram.createFlowDiagram("preview-pane");
 

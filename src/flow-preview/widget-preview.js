@@ -31,14 +31,14 @@ import {samples} from "../samples.js";
 import * as flow from "../flow-dsl";
 
 const {
-  G6Visitor,
-  UIDVisitor,
+  FlowToG6Visitor,
+  FlowUIDVisitor,
   parseDsl
 } = flow;
 
 
-const visitor = new G6Visitor();
-const uidvisitor = new UIDVisitor();
+const visitor = new FlowToG6Visitor();
+const uidvisitor = new FlowUIDVisitor();
 
 function main() {
   const commands = new CommandRegistry();
