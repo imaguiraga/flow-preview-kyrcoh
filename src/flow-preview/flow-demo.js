@@ -7,8 +7,8 @@ const {
   choice,
   zeroOrMore,
   terminal,
-  G6Visitor,
-  UIDVisitor
+  FlowToG6Visitor,
+  FlowUIDVisitor
 } = flow;
 
 let selectClause = () => sequence(a, b, repeat(optional("c")), zeroOrMore("d"));
@@ -44,8 +44,8 @@ try {
   console.error(e.name + ': ' + e.message);
 }
 
-const visitor = new G6Visitor();
-const uidvisitor = new UIDVisitor();
+const visitor = new FlowToG6Visitor();
+const uidvisitor = new FlowUIDVisitor();
 testflow = uidvisitor.visit(testflow);
 const data = visitor.visit(testflow);
 

@@ -1,4 +1,4 @@
-export class UIDVisitor {
+export class FlowUIDVisitor {
 
   constructor(prefix){
     this._prefix = prefix || "UID";
@@ -16,7 +16,7 @@ export class UIDVisitor {
         // keep only terminal nodes
         let p = this._prefix.concat("."+index);
         elt.id = p + ":" + elt.tagName;
-        elt.accept(new UIDVisitor(p),null);
+        elt.accept(new FlowUIDVisitor(p),null);
       });
     return tree;
   }

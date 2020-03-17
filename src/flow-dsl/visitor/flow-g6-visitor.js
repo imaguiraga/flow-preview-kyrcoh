@@ -1,22 +1,22 @@
-export class G6Visitor {
+export class FlowToG6Visitor {
 
   visit(tree,filter){
     let result = null;
     switch(tree.tagName){
       case "choice":
-        result = this.visitChoice(tree,filter);
+        result = this._visitChoice(tree,filter);
       break;
       case "optional":
-        result = this.visitOptional(tree,filter);
+        result = this._visitOptional(tree,filter);
       break;
       case "sequence":
-        result = this.visitSequence(tree,filter);
+        result = this._visitSequence(tree,filter);
       break;
       case "repeat":
-        result = this.visitRepeat(tree,filter);
+        result = this._visitRepeat(tree,filter);
       break;
       case "terminal":
-        result = this.visitTerminal(tree,filter);
+        result = this._visitTerminal(tree,filter);
       break;
       default:
       break;
@@ -25,29 +25,29 @@ export class G6Visitor {
     return result;
   }
 
-  visitSequence(tree,filter){
-    return SequenceEltG6Visitor.visit(this,tree,filter);
+  _visitSequence(tree,filter){
+    return SequenceEltFlowToG6Visitor.visit(this,tree,filter);
   }
 
-  visitChoice(tree,filter){
-    return ChoiceEltG6Visitor.visit(this,tree,filter);
+  _visitChoice(tree,filter){
+    return ChoiceEltFlowToG6Visitor.visit(this,tree,filter);
   }
 
-  visitOptional(tree,filter){
-    return OptionalEltG6Visitor.visit(this,tree,filter);
+  _visitOptional(tree,filter){
+    return OptionalEltFlowToG6Visitor.visit(this,tree,filter);
   }
 
-  visitRepeat(tree,filter){
-    return RepeatEltG6Visitor.visit(this,tree,filter);
+  _visitRepeat(tree,filter){
+    return RepeatEltFlowToG6Visitor.visit(this,tree,filter);
   }
 
-  visitTerminal(tree,filter){
-    return TerminalFlowEltG6Visitor.visit(this,tree,filter);
+  _visitTerminal(tree,filter){
+    return TerminalFlowEltFlowToG6Visitor.visit(this,tree,filter);
   }
 }
 
 
-export class TerminalFlowEltG6Visitor{
+export class TerminalFlowEltFlowToG6Visitor{
   static visit(visitor,tree,filter) {
     const g6data = {
       nodes: [],
@@ -73,7 +73,7 @@ export class TerminalFlowEltG6Visitor{
 
 }
 
-export class SequenceEltG6Visitor{
+export class SequenceEltFlowToG6Visitor{
   static visit(visitor,tree,filter) {
     const g6data = {
       nodes: [],
@@ -151,7 +151,7 @@ export class SequenceEltG6Visitor{
   }
 }
 
-export class ChoiceEltG6Visitor{
+export class ChoiceEltFlowToG6Visitor{
   static visit(visitor,tree,filter){
 
     const g6data = {
@@ -228,7 +228,7 @@ export class ChoiceEltG6Visitor{
   
 }
 
-export class OptionalEltG6Visitor{
+export class OptionalEltFlowToG6Visitor{
   static visit(visitor,tree,filter) {
     const g6data = {
       nodes: [],
@@ -306,7 +306,7 @@ export class OptionalEltG6Visitor{
   }
 }
 
-export class RepeatEltG6Visitor{
+export class RepeatEltFlowToG6Visitor{
   static visit(visitor,tree,filter) {
     const g6data = {
       nodes: [],
