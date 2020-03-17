@@ -54,12 +54,12 @@ const splitPane = Split(["#one", "#two"], {
 });
 
 const {
-  G6Visitor,
-  UIDVisitor
+  FlowToG6Visitor,
+  FlowUIDVisitor
 } = flow;
 
-const visitor = new G6Visitor();
-const uidvisitor = new UIDVisitor();
+const visitor = new FlowToG6Visitor();
+const uidvisitor = new FlowUIDVisitor();
 
 const graph = diagram.createFlowDiagram("preview-pane");
 
