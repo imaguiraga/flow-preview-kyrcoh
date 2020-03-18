@@ -24,7 +24,7 @@ export class TerminalFlowElt {
     
     //get new id
     TerminalFlowElt.ID = TerminalFlowElt.ID + 1;
-    self.nameSpace = NAMESPACE;
+    self.nameSpace = TerminalFlowElt.NAMESPACE;
     self.tagName = tagName || "terminal";
     self.id = self.tagName + "." + TerminalFlowElt.ID;
     
