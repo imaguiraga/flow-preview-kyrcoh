@@ -58,7 +58,7 @@ export class TerminalFlowEltFlowToG6Visitor{
       id: tree.id,
       label: tree.id ,
       model: { 
-        nameSpace : tree.nameSpace,  
+        resourceType : tree.resourceType,  
         tagName: 'terminal'
       }
     };
@@ -89,7 +89,7 @@ export class SequenceEltFlowToG6Visitor{
       id: tree.start.id,
       label: tree.start.id,
       model: { 
-        nameSpace : tree.nameSpace,  
+        resourceType : tree.resourceType,  
         tagName: SEQUENCE+'.start'
       }
     });
@@ -104,7 +104,7 @@ export class SequenceEltFlowToG6Visitor{
           id: node.id,
           label: node.id,
           model: { 
-            nameSpace : node.nameSpace,  
+            resourceType : node.resourceType,  
             tagName: SEQUENCE+'.terminal'
           }
         };
@@ -121,7 +121,7 @@ export class SequenceEltFlowToG6Visitor{
       id: tree.finish.id,
       label: tree.finish.id ,
       model: { 
-        nameSpace : tree.nameSpace,  
+        resourceType : tree.resourceType,  
         tagName: SEQUENCE+'.finish'
       }
     });
@@ -172,7 +172,7 @@ export class ChoiceEltFlowToG6Visitor{
       id: tree.start.id,
       label: tree.start.id,
       model: { 
-        nameSpace : tree.nameSpace,  
+        resourceType : tree.resourceType,  
         tagName: CHOICE+'.start'
       }
     });
@@ -188,7 +188,7 @@ export class ChoiceEltFlowToG6Visitor{
           id: node.id,
           label: node.id,
           model: {
-            nameSpace : node.nameSpace,   
+            resourceType : node.resourceType,   
             tagName: CHOICE+'.terminal'
           }
         };
@@ -206,7 +206,7 @@ export class ChoiceEltFlowToG6Visitor{
       id: tree.finish.id,
       label: tree.finish.id ,
       model: {
-        nameSpace : tree.nameSpace,   
+        resourceType : tree.resourceType,   
         tagName: CHOICE+'.finish'
       }
     });
@@ -251,7 +251,7 @@ export class OptionalEltFlowToG6Visitor{
       id: tree.start.id,
       label: tree.start.id ,
       model: {
-        nameSpace : tree.nameSpace,   
+        resourceType : tree.resourceType,   
         tagName: OPTIONAL+'.start'
       }
     });
@@ -267,7 +267,7 @@ export class OptionalEltFlowToG6Visitor{
           id: node.id,
           label: node.id ,
           model: { 
-            nameSpace : node.nameSpace,  
+            resourceType : node.resourceType,  
             tagName: OPTIONAL+'.terminal'
           }
         };
@@ -284,7 +284,7 @@ export class OptionalEltFlowToG6Visitor{
       id: tree.finish.id,
       label: tree.finish.id ,
       model: { 
-        nameSpace : tree.nameSpace,  
+        resourceType : tree.resourceType,  
         tagName: OPTIONAL+'.finish'
       }
     });
@@ -333,7 +333,7 @@ export class RepeatEltFlowToG6Visitor{
       id: tree.start.id,
       label: tree.start.id,
       model: { 
-        nameSpace : tree.nameSpace,  
+        resourceType : tree.resourceType,  
         tagName: REPEAT+'.start'
       }
     });
@@ -349,7 +349,7 @@ export class RepeatEltFlowToG6Visitor{
           id: node.id,
           label: node.id ,
           model: {
-            nameSpace : node.nameSpace,   
+            resourceType : node.resourceType,   
             tagName: REPEAT+'.terminal'
           }
         };
@@ -367,7 +367,7 @@ export class RepeatEltFlowToG6Visitor{
       id: tree.finish.id,
       label: tree.finish.id,
       model: { 
-        nameSpace : tree.nameSpace,  
+        resourceType : tree.resourceType,  
         tagName: REPEAT+'.finish'
       }
     });
