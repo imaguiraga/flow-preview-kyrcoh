@@ -3,6 +3,7 @@
  */
 export class TerminalFlowElt {
   static ID = 0;
+  static NAMESPACE = "flow";
   /**
    * Create a CompositeFlowElt.
    * @param {object} elts - The elts value.
@@ -23,6 +24,7 @@ export class TerminalFlowElt {
     
     //get new id
     TerminalFlowElt.ID = TerminalFlowElt.ID + 1;
+    self.nameSpace = NAMESPACE;
     self.tagName = tagName || "terminal";
     self.id = self.tagName + "." + TerminalFlowElt.ID;
     
