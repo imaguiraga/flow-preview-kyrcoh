@@ -58,6 +58,7 @@ export class TerminalFlowEltFlowToG6Visitor{
       id: tree.id,
       label: tree.id ,
       model: { 
+        nameSpace : tree.nameSpace,  
         tagName: 'terminal'
       }
     };
@@ -75,11 +76,12 @@ export class TerminalFlowEltFlowToG6Visitor{
 
 export class SequenceEltFlowToG6Visitor{
   static visit(visitor,tree,filter) {
+    const SEQUENCE = "sequence";
     const g6data = {
       nodes: [],
       edges: []
     };
-    if (tree.tagName !== "sequence") {
+    if (tree.tagName !== SEQUENCE) {
       return g6data;
     }
     // start + finish nodes
@@ -87,11 +89,12 @@ export class SequenceEltFlowToG6Visitor{
       id: tree.start.id,
       label: tree.start.id,
       model: { 
-        tagName: 'sequence.start'
+        nameSpace : tree.nameSpace,  
+        tagName: SEQUENCE+'.start'
       }
     });
     // nodes
-    if (tree.tagName === "sequence") {
+    if (tree.tagName === SEQUENCE) {
       tree.elts.forEach(node => {
         // keep only terminal nodes
         if (node.tagName !== "terminal") {
@@ -101,7 +104,8 @@ export class SequenceEltFlowToG6Visitor{
           id: node.id,
           label: node.id,
           model: { 
-            tagName: 'sequence.terminal'
+            nameSpace : node.nameSpace,  
+            tagName: SEQUENCE+'.terminal'
           }
         };
         if (filter) {
@@ -117,7 +121,8 @@ export class SequenceEltFlowToG6Visitor{
       id: tree.finish.id,
       label: tree.finish.id ,
       model: { 
-        tagName: 'sequence.finish'
+        nameSpace : tree.nameSpace,  
+        tagName: SEQUENCE+'.finish'
       }
     });
     // edges
@@ -153,13 +158,13 @@ export class SequenceEltFlowToG6Visitor{
 
 export class ChoiceEltFlowToG6Visitor{
   static visit(visitor,tree,filter){
-
+    const CHOICE = "choice";
     const g6data = {
       nodes: [],
       edges: []
     };
     //
-    if (tree.tagName !== "choice") {
+    if (tree.tagName !== CHOICE) {
       return g6data
     }
     // start + finish nodes
@@ -167,12 +172,13 @@ export class ChoiceEltFlowToG6Visitor{
       id: tree.start.id,
       label: tree.start.id,
       model: { 
-        tagName: 'choice.start'
+        nameSpace : tree.nameSpace,  
+        tagName: CHOICE+'.start'
       }
     });
 
     // nodes
-    if (tree.tagName === "choice") {
+    if (tree.tagName === CHOICE) {
       tree.elts.forEach(node => {
         // keep only terminal nodes
         if (node.tagName !== "terminal") {
@@ -181,8 +187,9 @@ export class ChoiceEltFlowToG6Visitor{
         let n = {
           id: node.id,
           label: node.id,
-          model: { 
-            tagName: 'choice.terminal'
+          model: {
+            nameSpace : node.nameSpace,   
+            tagName: CHOICE+'.terminal'
           }
         };
 
@@ -198,8 +205,9 @@ export class ChoiceEltFlowToG6Visitor{
     g6data.nodes.push({
       id: tree.finish.id,
       label: tree.finish.id ,
-      model: { 
-        tagName: 'choice.finish'
+      model: {
+        nameSpace : tree.nameSpace,   
+        tagName: CHOICE+'.finish'
       }
     });
     // edges
@@ -230,24 +238,26 @@ export class ChoiceEltFlowToG6Visitor{
 
 export class OptionalEltFlowToG6Visitor{
   static visit(visitor,tree,filter) {
+    const OPTIONAL = "optional";
     const g6data = {
       nodes: [],
       edges: []
     };
-    if (tree.tagName !== "optional") {
+    if (tree.tagName !== OPTIONAL) {
       return g6data;
     }
     // start + finish nodes
     g6data.nodes.push({
       id: tree.start.id,
       label: tree.start.id ,
-      model: { 
-        tagName: 'optional.start'
+      model: {
+        nameSpace : tree.nameSpace,   
+        tagName: OPTIONAL+'.start'
       }
     });
 
     // nodes
-    if (tree.tagName === "optional") {
+    if (tree.tagName === OPTIONAL) {
       tree.elts.forEach(node => {
         // keep only terminal nodes
         if (node.tagName !== "terminal") {
@@ -257,7 +267,8 @@ export class OptionalEltFlowToG6Visitor{
           id: node.id,
           label: node.id ,
           model: { 
-            tagName: 'optional.terminal'
+            nameSpace : node.nameSpace,  
+            tagName: OPTIONAL+'.terminal'
           }
         };
         if (filter) {
@@ -273,7 +284,8 @@ export class OptionalEltFlowToG6Visitor{
       id: tree.finish.id,
       label: tree.finish.id ,
       model: { 
-        tagName: 'optional.finish'
+        nameSpace : tree.nameSpace,  
+        tagName: OPTIONAL+'.finish'
       }
     });
     // edges
@@ -308,11 +320,12 @@ export class OptionalEltFlowToG6Visitor{
 
 export class RepeatEltFlowToG6Visitor{
   static visit(visitor,tree,filter) {
+    const REPEAT = "repeat";
     const g6data = {
       nodes: [],
       edges: []
     };
-    if (tree.tagName !== "repeat") {
+    if (tree.tagName !== REPEAT) {
       return g6data;
     }
     // start + finish nodes
@@ -320,12 +333,13 @@ export class RepeatEltFlowToG6Visitor{
       id: tree.start.id,
       label: tree.start.id,
       model: { 
-        tagName: 'repeat.start'
+        nameSpace : tree.nameSpace,  
+        tagName: REPEAT+'.start'
       }
     });
 
     // nodes
-    if (tree.tagName === "repeat") {
+    if (tree.tagName === REPEAT) {
       tree.elts.forEach(node => {
         // keep only terminal nodes
         if (node.tagName !== "terminal") {
@@ -334,8 +348,9 @@ export class RepeatEltFlowToG6Visitor{
         let n = {
           id: node.id,
           label: node.id ,
-          model: { 
-            tagName: 'repeat.terminal'
+          model: {
+            nameSpace : node.nameSpace,   
+            tagName: REPEAT+'.terminal'
           }
         };
         if (filter) {
@@ -352,7 +367,8 @@ export class RepeatEltFlowToG6Visitor{
       id: tree.finish.id,
       label: tree.finish.id,
       model: { 
-        tagName: 'repeat.finish'
+        nameSpace : tree.nameSpace,  
+        tagName: REPEAT+'.finish'
       }
     });
     // edges
