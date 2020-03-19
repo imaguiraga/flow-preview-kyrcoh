@@ -1,16 +1,16 @@
 /**
- * Class TerminalFlowElt.
+ * Class TerminalResource.
  */
-export class TerminalFlowElt {
+export class TerminalResource {
   static ID = 0;
-  static RESOURCE_TYPE = "flow";
   /**
-   * Create a CompositeFlowElt.
+   * Create a TerminalResource.
    * @param {object} elts - The elts value.
    * @param {object} ctx - The ctx value.
    * @param {string} tagName - The tagName value.
+   * @param {string} resourceType - The resourceType value.
    */
-  constructor(elts,ctx,tagName) {
+  constructor(elts,ctx,tagName,resourceType) {
     let self = this;
     self.title = "title";
     self.elts = [];
@@ -23,10 +23,10 @@ export class TerminalFlowElt {
     }
     
     //get new id
-    TerminalFlowElt.ID = TerminalFlowElt.ID + 1;
-    self.resourceType = TerminalFlowElt.RESOURCE_TYPE;
+    TerminalResource.ID = TerminalResource.ID + 1;
+    self.resourceType = resourceType;
     self.tagName = tagName || "terminal";
-    self.id = self.tagName + "." + TerminalFlowElt.ID;
+    self.id = self.tagName + "." + TerminalResource.ID;
     
     self.start = this;
     self.finish = this;
@@ -90,31 +90,32 @@ export class TerminalFlowElt {
 
 }
 
-export function terminal(elt) {
-  return new TerminalFlowElt(elt);
-}
 
 /**
- * Class CompositeFlowElt.
- * @extends TerminalFlowElt
+ * Class CompositeResource.
+ * @extends TerminalResource
  */
-export class CompositeFlowElt extends TerminalFlowElt {
+export class CompositeResource extends TerminalResource {
   /**
-   * Create a CompositeFlowElt.
+   * Create a CompositeResource.
    * @param {object} elts - The elts value.
    * @param {object} ctx - The ctx value.
    * @param {string} tagName - The tagName value.
+   * @param {string} resourceType - The resourceType value.
    */
-  constructor(elts,ctx,tagName) {
-    super(elts,ctx,tagName);
+  constructor(elts,ctx,tagName,resourceType) {
+    super(elts,ctx,tagName,resourceType);
     let self = this;
     self.elts = [];
     self.title = null;
-    self.start = new TerminalFlowElt("start",null,"start");
-    self.finish = new TerminalFlowElt("finish",null,"finish");
+    self.start = new TerminalResource("start",null,"start",resourceType);
+    self.finish = new TerminalResource("finish",null,"finish",resourceType);
 
     if(Array.isArray(elts)) {
-      self.elts = elts.map(self.resolveElt).filter( e => { return e!= null});
+      self.elts = elts.map(
+          (elt) => { return self.resolveElt(elt) }
+        ).filter( e => { return e != null } );
+
     } else {
       let r = self.resolveElt(elts);
       if( r != null) {
@@ -132,7 +133,7 @@ export class CompositeFlowElt extends TerminalFlowElt {
       return elt.call();
     } else if (typeof elt !== "object") {
       // very likely a primitive type
-      return terminal(elt);
+      return new TerminalResource(elt,null,"terminal",this.resourceType);
     }
     // default to object
     return elt;

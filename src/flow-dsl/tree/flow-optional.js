@@ -1,18 +1,18 @@
-import {CompositeFlowElt} from "./terminal.js";
+import {CompositeFlowElt} from "./flow-terminal.js";
 
 /**
- * Class RepeatElt.
+ * Class OptionalElt.
  * @extends CompositeFlowElt
  */
-export class RepeatElt extends CompositeFlowElt {
+export class OptionalElt extends CompositeFlowElt{
   /**
-   * Create a RepeatElt.
+   * Create a OptionalElt.
    * @param {object} elts - The elts value.
    * @param {object} ctx - The ctx value.
    * @param {string} tagName - The tagName value.
    */
-  constructor(elts,ctx,tagName) {
-    super(elts,ctx,tagName ||"repeat");
+  constructor(elts,ctx,tagName)  {
+    super(elts,ctx,tagName || "optional");
   }
 
   add(elt){
@@ -25,6 +25,7 @@ export class RepeatElt extends CompositeFlowElt {
   }
 }
 
-export function repeat(elt) {
-  return new RepeatElt(elt);
+export function optional(elt) {
+  return new OptionalElt(elt);
 }
+

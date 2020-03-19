@@ -1,4 +1,4 @@
-import {CompositeFlowElt} from "./terminal.js";
+import {CompositeFlowElt} from "./flow-terminal.js";
 
 /**
  * Class ChoiceElt.
