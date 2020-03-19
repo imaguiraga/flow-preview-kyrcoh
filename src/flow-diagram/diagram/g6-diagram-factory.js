@@ -2,7 +2,6 @@ import G6 from "@antv/g6";
 import { 
   GET_NODE_CONFIG, 
   NODE_OPTIONS, 
-  NODE_TYPE, 
   CUSTOM_NODE_TYPE,
   DEFAULT_NODE, 
   DEFAULT_EDGE 

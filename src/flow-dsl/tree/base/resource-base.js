@@ -112,7 +112,10 @@ export class CompositeResource extends TerminalResource {
     self.finish = new TerminalResource("finish",null,"finish",resourceType);
 
     if(Array.isArray(elts)) {
-      self.elts = elts.map(self.resolveElt).filter( e => { return e!= null});
+      self.elts = elts.map(
+          (elt) => { return self.resolveElt(elt) }
+        ).filter( e => { return e != null } );
+
     } else {
       let r = self.resolveElt(elts);
       if( r != null) {
