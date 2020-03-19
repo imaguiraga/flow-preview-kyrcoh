@@ -1,10 +1,10 @@
 /* flow-element */
-export * from "./tree/terminal.js";
-export * from "./tree/choice.js";
-export * from "./tree/optional.js";
-export * from "./tree/repeat.js";
-export * from "./tree/sequence.js";
-export * from "./tree/zero-or-more.js";
+export * from "./tree/flow-terminal.js";
+export * from "./tree/flow-choice.js";
+export * from "./tree/flow-optional.js";
+export * from "./tree/flow-repeat.js";
+export * from "./tree/flow-sequence.js";
+export * from "./tree/flow-zero-or-more.js";
 /* visitors */
 export * from "./visitor/flow-g6-visitor.js";
 export * from "./visitor/flow-uid-visitor.js";
