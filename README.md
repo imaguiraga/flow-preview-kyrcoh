@@ -2,6 +2,8 @@
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/flow-preview-kyrcoh)
 
+[![Open in CodeSandBox]](https://codesandbox.io/s/github/imaguiraga/flow-preview-kyrcoh)
+
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/imaguiraga/flow-preview-kyrcoh/)
 
 A flow DSL javascript Visualizer using [antvis G6 Graph](https://g6.antv.vision/en)
