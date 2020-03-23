@@ -31,7 +31,8 @@ export function createFlowDiagram(containerId,_width,_height){
       nodesepFunc: (d) => {
         return 40;
       },
-      ranksep: 60
+      ranksep: 60,
+      controlPoints: true
     },
     defaultNode: DEFAULT_NODE,
     defaultEdge: DEFAULT_EDGE,
