@@ -1,6 +1,6 @@
 # flow-preview-kyrcoh
 
-[Open in CodeSandBox](https://codesandbox.io/s/github/imaguiraga/flow-preview-kyrcoh)
+[Open in CodeSandBox](https://codesandbox.io/s/flow-preview-kyrcoh-zvl2u)
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/imaguiraga/flow-preview-kyrcoh/)
 
