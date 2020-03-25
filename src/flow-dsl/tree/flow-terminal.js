@@ -21,10 +21,6 @@ export class TerminalFlowElt extends TerminalResource{
 
 }
 
-export function terminal(elt) {
-  return new TerminalFlowElt(elt);
-}
-
 /**
  * Class CompositeFlowElt.
  * @extends CompositeResource
@@ -39,4 +35,13 @@ export class CompositeFlowElt extends CompositeResource {
   constructor(elts,ctx,tagName) {
     super(elts,ctx,tagName,FLOW_RESOURCE_TYPE);
   }
+}
+
+/**
+ * Create a terminal dsl tree.
+ * @param {object} elt - The element.
+ * @return {object} flow dsl.
+ */
+export function terminal(elt) {
+  return new TerminalFlowElt(elt);
 }
