@@ -1,5 +1,11 @@
+/**
+ * Class FlowUIDVisitor.
+ */
 export class FlowUIDVisitor {
-
+  /**
+   * Create a FlowUIDVisitor.
+   * @param {string} prefix - The UID prefix.
+   */
   constructor(prefix){
     this._prefix = prefix || "UID";
   }

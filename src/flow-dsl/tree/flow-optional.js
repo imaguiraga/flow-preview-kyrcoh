@@ -25,6 +25,11 @@ export class OptionalElt extends CompositeFlowElt{
   }
 }
 
+/**
+ * Create an optional dsl tree.
+ * @param {object} elt - The element.
+ * @return {object} flow dsl.
+ */
 export function optional(elt) {
   return new OptionalElt(elt);
 }

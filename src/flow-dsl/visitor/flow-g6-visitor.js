@@ -1,5 +1,13 @@
+/**
+ * Class FlowToG6Visitor.
+ */
 export class FlowToG6Visitor {
-
+  /**
+   * Convert a dsl tree to g6 Graph data.
+   * @param {object} tree - The dsl tree.
+   * @param {function} filter - The dsl filter function.
+   * @return {object} g6 Graph data.
+   */
   visit(tree,filter){
     let result = null;
     switch(tree.tagName){
@@ -30,7 +38,11 @@ export class FlowToG6Visitor {
   }
 
   _visitChoice(tree,filter){
-    return ChoiceEltFlowToG6Visitor.visit(this,tree,filter);
+    return MutltiPathEltFlowToG6Visitor.visit(this,tree,filter,"choice");
+  }
+
+  _visitParallel(tree,filter){
+    return MutltiPathEltFlowToG6Visitor.visit(this,tree,filter,"parallel");
   }
 
   _visitOptional(tree,filter){
@@ -46,8 +58,17 @@ export class FlowToG6Visitor {
   }
 }
 
-
-export class TerminalFlowEltFlowToG6Visitor{
+/**
+ * Class TerminalFlowEltFlowToG6Visitor.
+ */
+class TerminalFlowEltFlowToG6Visitor{
+  /**
+   * Convert a dsl tree to g6 Graph data.
+   * @param {object} visitor - The dsl tree visitor.
+   * @param {object} tree - The dsl tree.
+   * @param {function} filter - The dsl filter function.
+   * @return {object} g6 Graph data.
+   */
   static visit(visitor,tree,filter) {
     const g6data = {
       nodes: [],
@@ -74,7 +95,17 @@ export class TerminalFlowEltFlowToG6Visitor{
 
 }
 
-export class SequenceEltFlowToG6Visitor{
+/**
+ * Class SequenceEltFlowToG6Visitor.
+ */
+class SequenceEltFlowToG6Visitor{
+  /**
+   * Convert a dsl tree to g6 Graph data.
+   * @param {object} visitor - The dsl tree visitor.
+   * @param {object} tree - The dsl tree.
+   * @param {function} filter - The dsl filter function.
+   * @return {object} g6 Graph data.
+   */  
   static visit(visitor,tree,filter) {
     const SEQUENCE = "sequence";
     const g6data = {
@@ -156,15 +187,25 @@ export class SequenceEltFlowToG6Visitor{
   }
 }
 
-export class ChoiceEltFlowToG6Visitor{
-  static visit(visitor,tree,filter){
-    const CHOICE = "choice";
+/**
+ * Class MutltiPathEltFlowToG6Visitor.
+ */
+class MutltiPathEltFlowToG6Visitor{
+  /**
+   * Convert a dsl tree to g6 Graph data.
+   * @param {object} visitor - The dsl tree visitor.
+   * @param {object} tree - The dsl tree.
+   * @param {function} filter - The dsl filter function.
+   * @return {object} g6 Graph data.
+   */  
+  static visit(visitor,tree,filter,type){
+    //const type = "choice" | "parallel";
     const g6data = {
       nodes: [],
       edges: []
     };
     //
-    if (tree.tagName !== CHOICE) {
+    if (tree.tagName !== type) {
       return g6data
     }
     // start + finish nodes
@@ -173,12 +214,12 @@ export class ChoiceEltFlowToG6Visitor{
       label: tree.start.id,
       model: { 
         resourceType : tree.resourceType,  
-        tagName: CHOICE+'.start'
+        tagName: type+'.start'
       }
     });
 
     // nodes
-    if (tree.tagName === CHOICE) {
+    if (tree.tagName === type) {
       tree.elts.forEach(node => {
         // keep only terminal nodes
         if (node.tagName !== "terminal") {
@@ -189,7 +230,7 @@ export class ChoiceEltFlowToG6Visitor{
           label: node.id,
           model: {
             resourceType : node.resourceType,   
-            tagName: CHOICE+'.terminal'
+            tagName: type+'.terminal'
           }
         };
 
@@ -207,7 +248,7 @@ export class ChoiceEltFlowToG6Visitor{
       label: tree.finish.id ,
       model: {
         resourceType : tree.resourceType,   
-        tagName: CHOICE+'.finish'
+        tagName: type+'.finish'
       }
     });
     // edges
@@ -236,7 +277,17 @@ export class ChoiceEltFlowToG6Visitor{
   
 }
 
-export class OptionalEltFlowToG6Visitor{
+/**
+ * Class OptionalEltFlowToG6Visitor.
+ */
+class OptionalEltFlowToG6Visitor{
+  /**
+   * Convert a dsl tree to g6 Graph data.
+   * @param {object} visitor - The dsl tree visitor.
+   * @param {object} tree - The dsl tree.
+   * @param {function} filter - The dsl filter function.
+   * @return {object} g6 Graph data.
+   */  
   static visit(visitor,tree,filter) {
     const OPTIONAL = "optional";
     const g6data = {
@@ -318,7 +369,17 @@ export class OptionalEltFlowToG6Visitor{
   }
 }
 
-export class RepeatEltFlowToG6Visitor{
+/**
+ * Class RepeatEltFlowToG6Visitor.
+ */
+class RepeatEltFlowToG6Visitor {
+  /**
+   * Convert a dsl tree to g6 Graph data.
+   * @param {object} visitor - The dsl tree visitor.
+   * @param {object} tree - The dsl tree.
+   * @param {function} filter - The dsl filter function.
+   * @return {object} g6 Graph data.
+   */
   static visit(visitor,tree,filter) {
     const REPEAT = "repeat";
     const g6data = {

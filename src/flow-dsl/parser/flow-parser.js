@@ -30,7 +30,8 @@ export function parseDsl(input,dslModule){
         optional,
         choice,
         zeroOrMore,
-        terminal
+        terminal,
+        parallel
       } = module;
 
       ${input}
