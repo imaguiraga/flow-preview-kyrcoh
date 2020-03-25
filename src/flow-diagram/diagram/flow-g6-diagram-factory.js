@@ -5,7 +5,7 @@ import {
   CUSTOM_NODE_TYPE,
   DEFAULT_NODE, 
   DEFAULT_EDGE 
-} from "./g6-node-config.js";
+} from "./flow-g6-node-config.js";
 
 G6.registerNode(
   CUSTOM_NODE_TYPE, NODE_OPTIONS, "single-node"
@@ -16,11 +16,18 @@ G6.Global.nodeStateStyle.selected = {
   fill: "#5394ef"
 };
 
-export function createFlowDiagram(containerId,_width,_height){
-  let containerElt = (typeof containerId === "string") ? document.getElementById(containerId) : containerId;
+/**
+ * Create a Code.
+ * @param {object} _container_ - The container.
+ * @param {number} _width_ - The content.
+ * @param {number} _height_ - The mode.
+ * @return {object} The G6Graph object.
+ */
+export function createFlowDiagram(_container_,_width_,_height_){
+  let containerElt = (typeof _container_ === "string") ? document.getElementById(_container_) : _container_;
 
-  const width = _width || 640;
-  const height = _height || 800;
+  const width = _width_ || 640;
+  const height = _height_ || 800;
 
   const graphOptions = {
     container: containerElt,

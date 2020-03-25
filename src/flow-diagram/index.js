@@ -1,2 +1,2 @@
 /* flow-diagram */
-export * from "./diagram/g6-diagram-factory.js";
+export * from "./diagram/flow-g6-diagram-factory.js";

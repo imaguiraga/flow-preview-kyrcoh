@@ -25,6 +25,11 @@ export class RepeatElt extends CompositeFlowElt {
   }
 }
 
+/**
+ * Create a repeat dsl tree.
+ * @param {object} elt - The element.
+ * @return {object} flow dsl.
+ */
 export function repeat(elt) {
   return new RepeatElt(elt);
 }

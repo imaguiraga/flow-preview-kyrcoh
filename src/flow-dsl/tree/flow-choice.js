@@ -17,6 +17,11 @@ export class ChoiceElt extends CompositeFlowElt {
 
 }
 
+/**
+ * Create a choice dsl tree.
+ * @param {array|object} elts - The elements.
+ * @return {object} flow dsl.
+ */
 export function choice(...elts) {
   return new ChoiceElt([...elts]);
 }

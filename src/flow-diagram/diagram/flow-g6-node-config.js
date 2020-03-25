@@ -43,6 +43,29 @@ const NODE_TAGNAME_CONFIG = new Map([
       }
     }
   }],
+  // Parallel
+  ["parallel.start", {
+    style: {
+      fill: "#774ff2",
+      stroke: "#5300e8"
+    },
+    labelCfg: {
+      style: {
+        fill: "#FFFFFF"
+      }
+    }
+  }],
+  ["parallel.finish", {
+    style: {
+      fill: "#774ff2",
+      stroke: "#5300e8"
+    },
+    labelCfg: {
+      style: {
+        fill: "#FFFFFF"
+      }
+    }
+  }],
   // Sequence
   ["sequence.start", {
     style: {
