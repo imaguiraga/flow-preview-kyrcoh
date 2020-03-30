@@ -7,7 +7,7 @@ const DEBUG = false;
 export function parseDsl(input,dslModule){
   // Parse text
   // eslint-disable-next-line
-  let factoryfunc = new Function("module","return new Map();");
+  let factoryFn = new Function("module","return new Map();");
   try {
     let tree = esprima.parseScript(input);
     // Modify AST
@@ -42,12 +42,12 @@ export function parseDsl(input,dslModule){
     `;
     if(DEBUG) console.log(text);
     // eslint-disable-next-line
-    factoryfunc = new Function("module",text);
+    factoryFn = new Function("module",text);
 
   } catch(e) {
     console.error(e.name + ': ' + e.message);
   }
   
-  return factoryfunc(dslModule);
+  return factoryFn(dslModule);
 
 }
