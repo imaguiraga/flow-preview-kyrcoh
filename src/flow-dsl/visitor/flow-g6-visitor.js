@@ -209,7 +209,7 @@ class MutltiPathEltFlowToG6Visitor{
     };
     //
     if (tree.tagName !== type) {
-      return g6data
+      return g6data;
     }
     // start + finish nodes
     g6data.nodes.push({
