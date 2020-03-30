@@ -5,26 +5,26 @@ export class FlowToG6Visitor {
   /**
    * Convert a dsl tree to g6 Graph data.
    * @param {object} tree - The dsl tree.
-   * @param {function} filter - The dsl filter function.
+   * @param {function} filterFn - The dsl filterFn function.
    * @return {object} g6 Graph data.
    */
-  visit(tree,filter){
+  visit(tree,filterFn){
     let result = null;
     switch(tree.tagName){
       case "choice":
-        result = this._visitChoice(tree,filter);
+        result = this._visitChoice(tree,filterFn);
       break;
       case "optional":
-        result = this._visitOptional(tree,filter);
+        result = this._visitOptional(tree,filterFn);
       break;
       case "sequence":
-        result = this._visitSequence(tree,filter);
+        result = this._visitSequence(tree,filterFn);
       break;
       case "repeat":
-        result = this._visitRepeat(tree,filter);
+        result = this._visitRepeat(tree,filterFn);
       break;
       case "terminal":
-        result = this._visitTerminal(tree,filter);
+        result = this._visitTerminal(tree,filterFn);
       break;
       default:
       break;
@@ -33,28 +33,28 @@ export class FlowToG6Visitor {
     return result;
   }
 
-  _visitSequence(tree,filter){
-    return SequenceEltFlowToG6Visitor.visit(this,tree,filter);
+  _visitSequence(tree,filterFn){
+    return SequenceEltFlowToG6Visitor.visit(this,tree,filterFn);
   }
 
-  _visitChoice(tree,filter){
-    return MutltiPathEltFlowToG6Visitor.visit(this,tree,filter,"choice");
+  _visitChoice(tree,filterFn){
+    return MutltiPathEltFlowToG6Visitor.visit(this,tree,filterFn,"choice");
   }
 
-  _visitParallel(tree,filter){
-    return MutltiPathEltFlowToG6Visitor.visit(this,tree,filter,"parallel");
+  _visitParallel(tree,filterFn){
+    return MutltiPathEltFlowToG6Visitor.visit(this,tree,filterFn,"parallel");
   }
 
-  _visitOptional(tree,filter){
-    return OptionalEltFlowToG6Visitor.visit(this,tree,filter);
+  _visitOptional(tree,filterFn){
+    return OptionalEltFlowToG6Visitor.visit(this,tree,filterFn);
   }
 
-  _visitRepeat(tree,filter){
-    return RepeatEltFlowToG6Visitor.visit(this,tree,filter);
+  _visitRepeat(tree,filterFn){
+    return RepeatEltFlowToG6Visitor.visit(this,tree,filterFn);
   }
 
-  _visitTerminal(tree,filter){
-    return TerminalFlowEltFlowToG6Visitor.visit(this,tree,filter);
+  _visitTerminal(tree,filterFn){
+    return TerminalFlowEltFlowToG6Visitor.visit(this,tree,filterFn);
   }
 }
 
@@ -66,10 +66,10 @@ class TerminalFlowEltFlowToG6Visitor{
    * Convert a dsl tree to g6 Graph data.
    * @param {object} visitor - The dsl tree visitor.
    * @param {object} tree - The dsl tree.
-   * @param {function} filter - The dsl filter function.
+   * @param {function} filterFn - The dsl filterFn function.
    * @return {object} g6 Graph data.
    */
-  static visit(visitor,tree,filter) {
+  static visit(visitor,tree,filterFn) {
     const g6data = {
       nodes: [],
       edges: []
@@ -83,8 +83,8 @@ class TerminalFlowEltFlowToG6Visitor{
         tagName: 'terminal'
       }
     };
-    if (filter) {
-      if (!filter(n)) {
+    if (filterFn) {
+      if (!filterFn(n)) {
         g6data.nodes.push(n);
       }
     } else {
@@ -103,10 +103,10 @@ class SequenceEltFlowToG6Visitor{
    * Convert a dsl tree to g6 Graph data.
    * @param {object} visitor - The dsl tree visitor.
    * @param {object} tree - The dsl tree.
-   * @param {function} filter - The dsl filter function.
+   * @param {function} filterFn - The dsl filterFn function.
    * @return {object} g6 Graph data.
    */  
-  static visit(visitor,tree,filter) {
+  static visit(visitor,tree,filterFn) {
     const SEQUENCE = "sequence";
     const g6data = {
       nodes: [],
@@ -139,8 +139,8 @@ class SequenceEltFlowToG6Visitor{
             tagName: SEQUENCE+'.terminal'
           }
         };
-        if (filter) {
-          if (!filter(n)) {
+        if (filterFn) {
+          if (!filterFn(n)) {
             g6data.nodes.push(n);
           }
         } else {
@@ -195,10 +195,10 @@ class MutltiPathEltFlowToG6Visitor{
    * Convert a dsl tree to g6 Graph data.
    * @param {object} visitor - The dsl tree visitor.
    * @param {object} tree - The dsl tree.
-   * @param {function} filter - The dsl filter function.
+   * @param {function} filterFn - The dsl filterFn function.
    * @return {object} g6 Graph data.
    */  
-  static visit(visitor,tree,filter,type){
+  static visit(visitor,tree,filterFn,type){
     //const type = "choice" | "parallel";
     const g6data = {
       nodes: [],
@@ -234,8 +234,8 @@ class MutltiPathEltFlowToG6Visitor{
           }
         };
 
-        if (filter) {
-          if (!filter(n)) {
+        if (filterFn) {
+          if (!filterFn(n)) {
             g6data.nodes.push(n);
           }
         } else {
@@ -285,10 +285,10 @@ class OptionalEltFlowToG6Visitor{
    * Convert a dsl tree to g6 Graph data.
    * @param {object} visitor - The dsl tree visitor.
    * @param {object} tree - The dsl tree.
-   * @param {function} filter - The dsl filter function.
+   * @param {function} filterFn - The dsl filterFn function.
    * @return {object} g6 Graph data.
    */  
-  static visit(visitor,tree,filter) {
+  static visit(visitor,tree,filterFn) {
     const OPTIONAL = "optional";
     const g6data = {
       nodes: [],
@@ -322,8 +322,8 @@ class OptionalEltFlowToG6Visitor{
             tagName: OPTIONAL+'.terminal'
           }
         };
-        if (filter) {
-          if (!filter(n)) {
+        if (filterFn) {
+          if (!filterFn(n)) {
             g6data.nodes.push(n);
           }
         } else {
@@ -377,10 +377,10 @@ class RepeatEltFlowToG6Visitor {
    * Convert a dsl tree to g6 Graph data.
    * @param {object} visitor - The dsl tree visitor.
    * @param {object} tree - The dsl tree.
-   * @param {function} filter - The dsl filter function.
+   * @param {function} filterFn - The dsl filterFn function.
    * @return {object} g6 Graph data.
    */
-  static visit(visitor,tree,filter) {
+  static visit(visitor,tree,filterFn) {
     const REPEAT = "repeat";
     const g6data = {
       nodes: [],
@@ -414,8 +414,8 @@ class RepeatEltFlowToG6Visitor {
             tagName: REPEAT+'.terminal'
           }
         };
-        if (filter) {
-          if (!filter(n)) {
+        if (filterFn) {
+          if (!filterFn(n)) {
             g6data.nodes.push(n);
           }
         } else {

@@ -68,8 +68,8 @@ export class TerminalResource {
     return this.id === elt.id;
   }
 
-  accept(visitor,filter){
-    return visitor.visit(this,filter);
+  accept(visitor,filterFn){
+    return visitor.visit(this,filterFn);
   }
 
   _ctx_(_ctx){
