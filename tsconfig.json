@@ -3,7 +3,7 @@
     "./src/*"
   ],
   "compilerOptions": {
-    "declaration": true,
+    //"declaration": true,
     "allowJs": true,
     "strict": true,
     "lib": [
@@ -21,6 +21,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "noEmit": true
+    "noEmit": true,
+    "isolatedModules": true
   }
 }
