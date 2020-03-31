@@ -10,9 +10,12 @@ export class FlowUIDVisitor {
     this._prefix = prefix || "UID";
   }
 
-  visit(tree,filter){
+  visit(tree,filterFn){
+    if( typeof tree === "undefined"){
+      return tree;
+    }
     // Non terminal nodes have start and finish
-    if( tree.tagName !== "terminal"){
+    if(!tree.isTerminal()){
       tree.start.id = this._prefix + ":" + tree.tagName + ".start";
       tree.finish.id = this._prefix + ":" + tree.tagName + ".finish";
     }

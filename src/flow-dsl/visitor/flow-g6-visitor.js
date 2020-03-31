@@ -10,6 +10,9 @@ export class FlowToG6Visitor {
    */
   visit(tree,filterFn){
     let result = null;
+    if( typeof tree === "undefined"){
+      return result;
+    }
     switch(tree.tagName){
       case "choice":
         result = this._visitChoice(tree,filterFn);
@@ -131,7 +134,7 @@ class SequenceEltFlowToG6Visitor{
     if (tree.tagName === SEQUENCE) {
       tree.elts.forEach(node => {
         // keep only terminal nodes
-        if (node.tagName !== "terminal") {
+        if (!node.isTerminal()) {
           return;
         }
         let n = {
@@ -225,7 +228,7 @@ class MutltiPathEltFlowToG6Visitor{
     if (tree.tagName === type) {
       tree.elts.forEach(node => {
         // keep only terminal nodes
-        if (node.tagName !== "terminal") {
+        if (!node.isTerminal()) {
           return;
         }
         let n = {
@@ -314,7 +317,7 @@ class OptionalEltFlowToG6Visitor{
     if (tree.tagName === OPTIONAL) {
       tree.elts.forEach(node => {
         // keep only terminal nodes
-        if (node.tagName !== "terminal") {
+        if (!node.isTerminal()) {
           return;
         }
         let n = {
@@ -406,7 +409,7 @@ class RepeatEltFlowToG6Visitor {
     if (tree.tagName === REPEAT) {
       tree.elts.forEach(node => {
         // keep only terminal nodes
-        if (node.tagName !== "terminal") {
+        if (!node.isTerminal()) {
           return;
         }
         let n = {
