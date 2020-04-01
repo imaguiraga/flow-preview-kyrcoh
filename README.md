@@ -1,6 +1,6 @@
 # flow-preview-kyrcoh
 
-[Open in Stackblitz](https://stackblitz.com/github/imaguiraga/flow-preview-kyrcoh/)
+[Open in StackBlitz](https://stackblitz.com/github/imaguiraga/flow-preview-kyrcoh/)
 
 [Open in CodeSandBox](https://codesandbox.io/s/github/imaguiraga/flow-preview-kyrcoh/tree/master)
 
