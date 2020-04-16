@@ -21,10 +21,44 @@ const flowEltNodeOptions =    {
   }
 };
 
+export const NODE_OPTIONS = flowEltNodeOptions;
+export const CUSTOM_NODE_TYPE = "flow-elt";
+export const DEFAULT_NODE = {
+      type: CUSTOM_NODE_TYPE,
+      style: {
+        stroke:"#5B8FF9",
+        fill: "#C6E5FF",
+        textColor: "#00287E"
+      },
+      labelCfg: {
+        style: {
+          fontSize: 12,
+        }
+      }
+    };
+
+export const DEFAULT_EDGE = {
+      type: "polyline",
+      style: {
+        radius: 10,
+        offset: 45,
+        endArrow: true,
+        lineWidth: 2,
+        stroke: "#555555"
+      }
+    };
+
+const START_ICON = '\uf192'; // dot-circle-o  
+const END_ICON = '\uf111'; // circle
+const ICON_SIZE = 40;
 
 const NODE_TAGNAME_CONFIG = new Map([
   // Choice
   ["choice.start", {
+    type: 'iconfont',
+    text: START_ICON,
+    size: ICON_SIZE,
+    label: "" ,
     style: {
       fill: "#7e3ff2",
       stroke: "#5300e8"
@@ -36,6 +70,10 @@ const NODE_TAGNAME_CONFIG = new Map([
     }
   }],
   ["choice.finish", {
+    type: 'iconfont',
+    text: END_ICON,// circle
+    size: ICON_SIZE,
+    label: "" ,
     style: {
       fill: "#7e3ff2",
       stroke: "#5300e8"
@@ -48,6 +86,10 @@ const NODE_TAGNAME_CONFIG = new Map([
   }],
   // Parallel
   ["parallel.start", {
+    type: 'iconfont',
+    text: START_ICON,// dot-circle-o
+    size: ICON_SIZE,
+    label: "" ,
     style: {
       fill: "#774ff2",
       stroke: "#5300e8"
@@ -59,6 +101,10 @@ const NODE_TAGNAME_CONFIG = new Map([
     }
   }],
   ["parallel.finish", {
+    type: 'iconfont',
+    text: END_ICON,// circle
+    size: ICON_SIZE,
+    label: "" ,
     style: {
       fill: "#774ff2",
       stroke: "#5300e8"
@@ -71,6 +117,10 @@ const NODE_TAGNAME_CONFIG = new Map([
   }],
   // Sequence
   ["sequence.start", {
+    type: 'iconfont',
+    text: START_ICON,// dot-circle-o
+    size: ICON_SIZE,
+    label: "" ,
     style: {
       fill: "#7e3ff2",
       stroke: "#5300e8"
@@ -82,6 +132,10 @@ const NODE_TAGNAME_CONFIG = new Map([
     }
   }],
   ["sequence.finish", {
+    type: 'iconfont',
+    text: END_ICON,// circle
+    size: ICON_SIZE,
+    label: "" ,
     style: {
       fill: "#7e3ff2",
       stroke: "#5300e8"
@@ -94,6 +148,10 @@ const NODE_TAGNAME_CONFIG = new Map([
   }],
   // Optional 
   ["optional.start", {
+    type: 'iconfont',
+    text: START_ICON,// dot-circle-o
+    size: ICON_SIZE,
+    label: "" ,
     style: {
       fill: "#aaf255",
       stroke: "#61d800"
@@ -104,7 +162,27 @@ const NODE_TAGNAME_CONFIG = new Map([
       }
     }
   }],
+  ["optional.skip", {
+    type: 'iconfont',
+    text: '\uf096', // square-o   
+    size: ICON_SIZE,
+    label: "",//"skip" ,
+    style: {
+      fill: "#000000",
+      //fill: "#aaf255",
+      //stroke: "#61d800",
+    },
+    labelCfg: {
+      style: {
+        fill: "#000000"
+      }
+    }
+  }],
   ["optional.finish", {
+    type: 'iconfont',
+    text: END_ICON,// circle
+    size: ICON_SIZE,
+    label: "" ,
     style: {
       fill: "#aaf255",
       stroke: "#61d800"
@@ -117,6 +195,10 @@ const NODE_TAGNAME_CONFIG = new Map([
   }],
   // Repeat
   ["repeat.start", {
+    type: 'iconfont',
+    text: START_ICON,// dot-circle-o
+    size: ICON_SIZE,
+    label: "" ,
     style: {
       fill: "#df55f2",
       stroke: "#ba00e5"
@@ -127,7 +209,30 @@ const NODE_TAGNAME_CONFIG = new Map([
       }
     }
   }],
-  ["repeat.finish", {
+  ["repeat.loop", {
+    type: 'iconfont',
+    text: '\uf0e2',// undo
+    size: ICON_SIZE,
+    label: "" ,//"loop"
+    style: {
+      fill: "#df55f2",
+      stroke: "none",
+    },
+    backgroundConfigx: {
+        fill: "#df55f2",
+        stroke: "#ba00e5",    
+    },
+    labelCfg: {
+      style: {
+        fill: "#ffffff"
+      }
+    }
+  }],
+  ["repeat.finish", { 
+    type: 'iconfont',
+    text: END_ICON,// circle
+    size: ICON_SIZE,
+    label: "" ,
     style: {
       fill: "#df55f2",
       stroke: "#ba00e5"
@@ -148,29 +253,3 @@ export const GET_NODE_CONFIG = function(node) {
 
   return {};
 };
-
-export const NODE_OPTIONS = flowEltNodeOptions;
-export const CUSTOM_NODE_TYPE = "flow-elt";
-export const DEFAULT_NODE = {
-      type: CUSTOM_NODE_TYPE,
-      style: {
-        stroke:"#5B8FF9",
-        fill: "#C6E5FF",
-        textColor: "#00287E"
-      },
-      labelCfg: {
-        style: {
-          fontSize: 12,
-        }
-      }
-    };
-export const DEFAULT_EDGE = {
-      type: "polyline",
-      style: {
-        radius: 10,
-        offset: 45,
-        endArrow: true,
-        lineWidth: 2,
-        stroke: "#C2C8D5"
-      }
-    };
