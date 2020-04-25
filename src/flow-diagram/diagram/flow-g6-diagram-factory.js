@@ -49,7 +49,14 @@ export function createFlowDiagram(_container_,_width_,_height_){
     defaultNode: DEFAULT_NODE,
     defaultEdge: DEFAULT_EDGE,
     modes: {
-      default: ["drag-canvas", "zoom-canvas", "drag-node"]
+      default: [
+        "drag-canvas", {
+          type: "zoom-canvas",
+          minZoom: 0.002,
+          maxZoom: 20
+        }, 
+        "drag-node"
+      ]
     },
     fitView: true,
     minZoom: 0.002,
