@@ -8,6 +8,8 @@ import {
   DEFAULT_NODE, 
   DEFAULT_EDGE 
 } from "./flow-g6-node-config.js";
+import { VanillaDagreLayoutOpts } from './dagre-layout';
+G6.registerLayout('dagre', VanillaDagreLayoutOpts);
 
 G6.registerNode('iconfont',ICONFONTNODE_CONFIG);
 G6.registerNode(
