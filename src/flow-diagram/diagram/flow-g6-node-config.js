@@ -55,7 +55,7 @@ export const DEFAULT_EDGE = {
       type: "polyline",
       style: {
         radius: 10,
-        offset: 45,
+        offset: 20,
         endArrow: true,
         lineWidth: 2,
         stroke: "#555555"

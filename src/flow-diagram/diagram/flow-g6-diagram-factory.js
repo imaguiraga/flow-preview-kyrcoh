@@ -42,12 +42,13 @@ export function createFlowDiagram(_container_,_width_,_height_){
     layout: {
       type: "dagre",
       nodesepFunc: (n) => {
-        return 40;
+        return 10;
       },
       ranksepFunc: (n) => {
-        return 60;
+        return 10;
       },
-      controlPoints: true
+      controlPoints: true,
+      offset: 20,
     },
     defaultNode: DEFAULT_NODE,
     defaultEdge: DEFAULT_EDGE,
