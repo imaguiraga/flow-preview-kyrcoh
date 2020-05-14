@@ -45,5 +45,19 @@
       name: 'text-shape2',
     });
     return keyShape;
-  }
+  },
+  getAnchorPoints(cfg) {
+    // Set Anchor points based on layout direction
+    if (cfg.rankdir && (cfg.rankdir === 'LR' || cfg.rankdir === 'RL')) {
+      return [
+        [1,0.5], 
+        [0,0.5]
+      ];
+    } else {
+      return [
+        [0.5,1], 
+        [0.5,0]
+      ];
+    }
+  },
 };

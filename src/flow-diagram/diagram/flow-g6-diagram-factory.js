@@ -9,6 +9,9 @@ import {
   DEFAULT_EDGE 
 } from "./flow-g6-node-config.js";
 
+import { VanillaDagreLayoutOpts } from './dagre-layout';
+G6.registerLayout('dagre', VanillaDagreLayoutOpts);
+
 G6.registerNode('iconfont',ICONFONTNODE_CONFIG);
 G6.registerNode(
   CUSTOM_NODE_TYPE, NODE_OPTIONS, "single-node"
@@ -39,12 +42,15 @@ export function createFlowDiagram(_container_,_width_,_height_){
     layout: {
       type: "dagre",
       nodesepFunc: (n) => {
-        return 40;
+        return 10;
       },
       ranksepFunc: (n) => {
-        return 60;
+        return 10;
       },
-      controlPoints: true
+      controlPoints: true,
+      nodesep: 80, 
+      ranksep: 80,
+      offset: 10,
     },
     defaultNode: DEFAULT_NODE,
     defaultEdge: DEFAULT_EDGE,

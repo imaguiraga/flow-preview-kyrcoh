@@ -18,7 +18,21 @@ const flowEltNodeOptions =    {
     });
 
     return rect;
-  }
+  },
+  getAnchorPoints(cfg) {
+    // Set Anchor points based on layout direction
+    if (cfg.rankdir && (cfg.rankdir === 'LR' || cfg.rankdir === 'RL')) {
+      return [
+        [1,0.5], 
+        [0,0.5]
+      ];
+    } else {
+      return [
+        [0.5,1], 
+        [0.5,0]
+      ];
+    }
+  },
 };
 
 export const NODE_OPTIONS = flowEltNodeOptions;
@@ -41,7 +55,7 @@ export const DEFAULT_EDGE = {
       type: "polyline",
       style: {
         radius: 10,
-        offset: 45,
+        offset: 20,
         endArrow: true,
         lineWidth: 2,
         stroke: "#555555"
