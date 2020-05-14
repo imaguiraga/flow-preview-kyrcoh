@@ -1,7 +1,6 @@
 /**
  * @Modified Version of @antv.g6 dagre layout
  */
-import G6 from "@antv/g6";
 import dagre from "dagre";
 
 import isArray from '@antv/util/lib/is-array';
@@ -57,7 +56,7 @@ export const VanillaDagreLayoutOpts = {
    */
    execute() {
     const self = this;
-    const { nodes, nodeSize, rankdir, offset } = self;
+    const { nodes, nodeSize, rankdir } = self;
 
     if (!nodes) return;
     const edges = self.edges || [];
