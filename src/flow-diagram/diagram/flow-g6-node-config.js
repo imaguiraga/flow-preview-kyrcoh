@@ -39,6 +39,7 @@ export const NODE_OPTIONS = flowEltNodeOptions;
 export const CUSTOM_NODE_TYPE = "flow-elt";
 export const DEFAULT_NODE = {
       type: CUSTOM_NODE_TYPE,
+      size: [120,60],
       style: {
         stroke:"#5B8FF9",
         fill: "#C6E5FF",
