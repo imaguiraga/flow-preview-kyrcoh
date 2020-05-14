@@ -48,7 +48,9 @@ export function createFlowDiagram(_container_,_width_,_height_){
         return 10;
       },
       controlPoints: true,
-      offset: 20,
+      nodesep: 80, 
+      ranksep: 80,
+      offset: 10,
     },
     defaultNode: DEFAULT_NODE,
     defaultEdge: DEFAULT_EDGE,
