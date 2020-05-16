@@ -75,7 +75,7 @@ const DEFAULT_NODE = {
     };
 
  const DEFAULT_EDGE = {
-      type: "polyline",
+      type: "line-arrow",
       style: {
         radius: 16,
         offset: 48,
